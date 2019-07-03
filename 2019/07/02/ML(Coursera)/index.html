@@ -203,14 +203,19 @@
 <h3 id="Week-1"><a href="#Week-1" class="headerlink" title="Week 1"></a>Week 1</h3><p><strong>Supervised learning</strong> problems are categorized into “regression” and “classification” problems. In a regression problem, we are trying to predict results within a continuous output, meaning that we are trying to map input variables to some continuous function. In a classification problem, we are instead trying to predict results in a discrete output. In other words, we are trying to map input variables into discrete categories.</p>
 <p><strong>Unsupervised learning</strong> allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
 <h4 id="Supervised-learning-—-Regression"><a href="#Supervised-learning-—-Regression" class="headerlink" title="Supervised learning — Regression"></a>Supervised learning — Regression</h4><p>We can derive this structure by clustering the data based on relationships among the variables in the data.</p>
-<p>m = Number of training examples<br>x’s = “input” variables / features<br>y’s = “output” variables / “target” variable<br>$(x^{i}, y^{i}) \ — i_{th}$ training example </p>
-<p>To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function h : X → Y so that $h(x)$ is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a <strong>hypothesis</strong>.</p>
+<script type="math/tex; mode=display">\begin{align*}
+m &= \text{Number of training examples} \newline 
+x's &= \text{"input" variables / features}  \newline
+y's &= \text{"output" variables / "target" variable} \newline
+(x^{i}, y^{i}) \ &= i_{th} \ \text{training example} \newline
+\end{align*}</script><p>To describe the supervised learning problem slightly more formally, our goal is, given a training set, to learn a function h : X → Y so that h(x) is a “good” predictor for the corresponding value of y. For historical reasons, this function h is called a <strong>hypothesis</strong>.</p>
 <p><strong>cost function</strong> (Mean squared error MSE):</p>
 <script type="math/tex; mode=display">J(\theta_0, ..., \theta_n)  = \dfrac {1}{2m} \displaystyle \sum _{i=1}^m \left (h_\theta (x_{i}) - y_{i} \right)^2</script><p>Our goal is to minimise the cost function, where one possible approach is <strong>gradient descent</strong>:  </p>
-<script type="math/tex; mode=display">\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)</script><p>where j = 0, …, n  and $\alpha$ is learning rate. </p>
-<p>We keep update $\theta$’s simultaneously until it converge, such that MSE is minimised.<br>One of the potential issues with this approach is that it may diverge or converge to local minimum(which is not global minimum).</p>
-<h3 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h3><h4 id="Multivariate-Linaer-Regression"><a href="#Multivariate-Linaer-Regression" class="headerlink" title="Multivariate Linaer Regression"></a>Multivariate Linaer Regression</h4><p>$\begin{align<em>}x_j^{(i)} &amp;= \text{value of feature } j \text{ in the }i^{th}\text{ training example} \newline x^{(i)}&amp; = \text{the input (features) of the }i^{th}\text{ training example} \newline m &amp;= \text{the number of training examples} \newline n &amp;= \text{the number of features} \end{align</em>}$</p>
-<p><strong>hypothesis</strong>: $\begin{align<em>}h_\theta(x) =\begin{bmatrix}\theta_0 \hspace{2em} \theta_1 \hspace{2em} … \hspace{2em} \theta_n\end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x\end{align</em>}$<br>Note that normally we assume $x_0^{(i)} = 1 \ \forall \ i$ </p>
+<script type="math/tex; mode=display">\theta_j := \theta_j - \alpha \frac{\partial}{\partial \theta_j} J(\theta_0, \theta_1)</script><p>where j = 0, …, n  and α is learning rate. </p>
+<p>We keep update θ’s simultaneously until it converge, such that MSE is minimised.<br>One of the potential issues with this approach is that it may diverge or converge to local minimum(which is not global minimum).</p>
+<h3 id="Week-2"><a href="#Week-2" class="headerlink" title="Week 2"></a>Week 2</h3><h4 id="Multivariate-Linaer-Regression"><a href="#Multivariate-Linaer-Regression" class="headerlink" title="Multivariate Linaer Regression"></a>Multivariate Linaer Regression</h4><script type="math/tex; mode=display">\begin{align*}x_j^{(i)} &= \text{value of feature } j \text{ in the }i^{th}\text{ training example} \newline x^{(i)}& = \text{the input (features) of the }i^{th}\text{ training example} \newline m &= \text{the number of training examples} \newline n &= \text{the number of features} \end{align*}</script><p><strong>hypothesis</strong>: <script type="math/tex">\begin{align*}h_\theta(x) &=\begin{bmatrix}\theta_0 \hspace{1em} \theta_1 \hspace{1em} ... \hspace{1em} \theta_n\end{bmatrix}\begin{bmatrix}x_0 \newline x_1 \newline \vdots \newline x_n\end{bmatrix}= \theta^T x \newline
+&= \theta_0 + \theta_1x_1 + ... + \theta_nx_n
+\end{align*}</script>  </p>
 <p><strong>Gradient Descent for Multiple Variables</strong>:</p>
 <script type="math/tex; mode=display">\begin{align*}& \text{repeat until convergence:} \; \lbrace \newline \; & \theta_j := \theta_j - \alpha \frac{1}{m} \sum\limits_{i=1}^{m} (h_\theta(x^{(i)}) - y^{(i)}) \cdot x_j^{(i)} \; & \text{for j := 0...n}\newline \rbrace\end{align*}</script><p>There are some techiques that could spped up Gradient Descent: </p>
 <ul>
@@ -220,10 +225,10 @@
 <p>— (working with <strong>learning rate</strong>)</p>
 </li>
 </ul>
-<p>On other hand, we can <span style="border-bottom:1.5px solid black;">combine multiple features into one</span>. For example, we can combine $x_1$ and $x_2$ into a new feature $x_3$ by taking $x_1⋅x_2$</p>
+<p>On other hand, we can <span style="border-bottom:1.5px solid black;">combine multiple features into one</span>. For example, we can combine features a and b into a new feature c by taking their product.</p>
 <h4 id="Polynomial-Regression"><a href="#Polynomial-Regression" class="headerlink" title="Polynomial Regression"></a>Polynomial Regression</h4><p>Our hypothesis function need not be linear (a straight line) if that does not fit the data well.</p>
 <p>We can <strong>change the behavior or curve</strong> of our hypothesis function by making it a quadratic, cubic or square root function (or any other form).</p>
-<p>For instance, we could do $h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2\sqrt{x_1} + \theta_3x_1^2$</p>
+<p>For instance, we could do <script type="math/tex">h_\theta(x) = \theta_0 + \theta_1x_1 + \theta_2\sqrt{x_1} + \theta_3x_1^2</script></p>
 
       
     

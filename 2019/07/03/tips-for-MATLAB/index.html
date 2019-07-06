@@ -196,7 +196,7 @@
     <div class="post-content syuanpi fadeInRightShort back-3">
       
         <p>some tips for MATLAB<br><a id="more"></a></p>
-<div class="table-container">
+<h4 id="basics"><a href="#basics" class="headerlink" title="basics"></a>basics</h4><div class="table-container">
 <table>
 <thead>
 <tr>
@@ -237,9 +237,123 @@
 <td>help</td>
 <td>help xxx</td>
 </tr>
+<tr>
+<td>size of matrix</td>
+<td>size(matrix,<em>) <br>\</em>: 1—no of row <br> 2—no of column</td>
+</tr>
+<tr>
+<td>length</td>
+<td>length()</td>
+</tr>
+<tr>
+<td>current directory</td>
+<td>pwd</td>
+</tr>
+<tr>
+<td>input file</td>
+<td>load xxxx.xxx</td>
+</tr>
+<tr>
+<td>output file</td>
+<td>save xxxx.xxx b(variables);</td>
+</tr>
+<tr>
+<td>clear all variables</td>
+<td>clear</td>
+</tr>
+<tr>
+<td>comment</td>
+<td>%</td>
+</tr>
 </tbody>
 </table>
 </div>
+<h4 id="Matrix-manipulation"><a href="#Matrix-manipulation" class="headerlink" title="Matrix manipulation"></a>Matrix manipulation</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>description</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>select element of matrix</td>
+<td>A([1 3], : )— means exact all elements <br> from 1st &amp; 3rd rows</td>
+</tr>
+<tr>
+<td>add column</td>
+<td>A = [A, [1; 2; 3]]</td>
+</tr>
+<tr>
+<td>matrix to vector</td>
+<td>A(:)</td>
+</tr>
+<tr>
+<td>concatenating matrix</td>
+<td>c = [A B] or c = [A; B]</td>
+</tr>
+<tr>
+<td>multiplication</td>
+<td>* </td>
+</tr>
+<tr>
+<td>element operation</td>
+<td>.+ .- .* etc.</td>
+</tr>
+<tr>
+<td>maximum</td>
+<td>max()., note that max(matrix) gives max column</td>
+</tr>
+<tr>
+<td>exact element with condition</td>
+<td>eg. find(A &lt; 3)</td>
+</tr>
+<tr>
+<td>max element for rows/cols</td>
+<td>max(A, [ ], 1 or 2)</td>
+</tr>
+<tr>
+<td>reflect matrix</td>
+<td>flipud()</td>
+</tr>
+<tr>
+<td>inverse matrix</td>
+<td>pinv()</td>
+</tr>
+<tr>
+<td>transpose</td>
+<td>transpose of a: a’</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="Plots"><a href="#Plots" class="headerlink" title="Plots"></a>Plots</h4><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>description</th>
+<th>code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>multiple lines on a plot</td>
+<td>hold on;</td>
+</tr>
+<tr>
+<td>subplot: divide plot into b x c grid,<br>access dth element</td>
+<td>subplot(b, c, d)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="control-statements"><a href="#control-statements" class="headerlink" title="control statements"></a>control statements</h4><p><strong>for/while</strong>:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>/<span class="keyword">while</span> condition,  </span><br><span class="line">    do something;  </span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>if else</strong>:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> condition,</span><br><span class="line">    do something;</span><br><span class="line"><span class="keyword">elseif</span> condition,</span><br><span class="line">    do something;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    do something;</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p><strong>function</strong>:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[a, b]</span> = <span class="title">undermat</span><span class="params">(x, y)</span></span></span><br><span class="line">a = x^<span class="number">2</span>;</span><br><span class="line">b = a + y;</span><br></pre></td></tr></table></figure>
 
       
     
@@ -258,7 +372,7 @@
     
       <a href="/2019/07/02/ML(Coursera)/" id="art-right" class="art-right">
         <span class="prev-title">
-          Study notes for Intro to ML (By Coursera)<i class="iconfont icon-enter"></i>
+          Study notes for ML By Coursera (part 1)<i class="iconfont icon-enter"></i>
         </span>
       </a>
     
@@ -285,7 +399,7 @@
   <aside class="post-toc">
     <div class="title"><span>Index</span></div>
     <div class="toc-inner">
-      
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#basics"><span class="toc-text">basics</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Matrix-manipulation"><span class="toc-text">Matrix manipulation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Plots"><span class="toc-text">Plots</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#control-statements"><span class="toc-text">control statements</span></a></li></ol>
     </div>
   </aside>
 

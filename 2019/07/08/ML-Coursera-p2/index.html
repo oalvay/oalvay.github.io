@@ -65,11 +65,7 @@
 
 
 
-  <title>
-  
-    Archives · Oalvay's Blog
-  
-</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Study notes for ML By Coursera (part 2) · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container" style="display:none;">
@@ -185,27 +181,27 @@
         <div class="main-wrapper">
           
     
-  <div class="archive syuanpi fadeInRightShort" id="archive">
-    
-      <aside class="archive-title">Total</aside>
-      <span class="archive-num">5 Posts In Total</span>
-    
-      
-      
+  
+  <article class="
+  post
+   is_post 
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          <time>2019-07-08</time>
+          
+        </div>
+      </div>
+      <h2 class="post-title syuanpi fadeInRightShort back-2">
         
-          
-          
-            
-            
-            <div class="archive-group">
-            <time class="archive-year"> 2019 </time>
-            <div class="archive-list">
-          
-          
-        <div class="archive-post">
-          <div class="archive-post-content">
-            
-              <p>This blog contains materials from the course <a href="https://www.coursera.org/learn/machine-learning/" target="_blank">Machine Learning</a> ran by Coursera</p>
+          Study notes for ML By Coursera (part 2)
+        
+      </h2>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        <p>This blog contains materials from the course <a href="https://www.coursera.org/learn/machine-learning/" target="_blank">Machine Learning</a> ran by Coursera</p>
 <h2 id="Week-4"><a href="#Week-4" class="headerlink" title="Week 4"></a>Week 4</h2><h3 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h3><p>Neurons are computational units that take inputs (<strong>dendrites</strong>) as electrical inputs (called <strong>spikes</strong>) that are channeled to outputs (<strong>axons</strong>). There are also intermediate layers of nodes between the input and output layers called the <strong>hidden layers</strong>, and the nodes inside are named <strong>activation units</strong>.</p>
 <script type="math/tex; mode=display">\begin{align*}& a_i^{(j)} = \text{"activation" of unit i in layer j} \newline& \Theta^{(j)} = \text{matrix of weights controlling function mapping from layer j to layer j+1}\end{align*}</script><p>If we had one hidden layer, it would look like:</p>
 <p><img src="http://www.wildml.com/wp-content/uploads/2015/09/nn-from-scratch-3-layer-network.png" width="%"></p>
@@ -215,115 +211,61 @@
 <p>Our hypothesis output is the logistic function applied to the sum of the values of our activation nodes, which have been multiplied by yet another parameter matrix, containing the weights for our second layer of nodes:</p>
 <script type="math/tex; mode=display">h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)})</script><p>The dimensions of these matrices of weights is determined as follows:</p>
 <script type="math/tex; mode=display">\text{If network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer $j+1$, then $\Theta^{(j)}$ will be of dimension $s_{j+1} \times (s_j + 1)$.}</script><script type="math/tex; mode=display">\text{Each layer gets its own matrix of weights, $Θ^{(j)}$.}</script>
-            
-          </div>
-          <div class="archive-post-info">
-            <time class="archive-post-time">
-              2019-07-08
-            </time>
-            <a class="archive-post-link" href="/2019/07/08/ML-Coursera-p2/">
-              Study notes for ML By Coursera (part 2)
-            </a>
-          </div>
-        </div>
       
-        
-          
-          
-          
-        <div class="archive-post">
-          <div class="archive-post-content">
-            
-              <p>some tips for MATLAB<br>
-            
-          </p></div>
-          <div class="archive-post-info">
-            <time class="archive-post-time">
-              2019-07-03
-            </time>
-            <a class="archive-post-link" href="/2019/07/03/tips-for-MATLAB/">
-              MATLAB related
-            </a>
-          </div>
-        </div>
+    
+    </div>
+    
+    
       
-        
-          
-          
-          
-        <div class="archive-post">
-          <div class="archive-post-content">
-            
-              <p>This blog contains materials from the course <a href="https://www.coursera.org/learn/machine-learning/" target="_blank">Machine Learning</a> ran by Coursera</p>
-            
-          </div>
-          <div class="archive-post-info">
-            <time class="archive-post-time">
-              2019-07-02
-            </time>
-            <a class="archive-post-link" href="/2019/07/02/ML-Coursera-p1/">
-              Study notes for ML By Coursera (part 1)
-            </a>
-          </div>
-        </div>
+
       
-        
-          
-          
-          
-        <div class="archive-post">
-          <div class="archive-post-content">
-            
-              <p>搭建这个博客是临时起意，用了差不多半天，比预计的时间要短。想当初学python，学C，学用kaggle，学用VNR打黄油…其中相当一部分给我带来了长期收益，故以后学新工具都将归类到“挤多不压身”的标签之下。</p>
-<p>以前有试着用django搭博客，当时奋战到半夜结果只搞了个开头，心情实属郁闷。不过那次经历算是让我初步了解了HTML语法，也之后学爬虫打下了一点点基础。相比之下，这次选用hexo+github简单了很多，不需要自己写代码，大部分都直接在终端里命令就可以了。</p>
-            
-          </div>
-          <div class="archive-post-info">
-            <time class="archive-post-time">
-              2019-06-17
-            </time>
-            <a class="archive-post-link" href="/2019/06/17/hexo-github-搭建博客小记/">
-              hexo+github 搭建博客小记
-            </a>
-          </div>
-        </div>
-      
-        
-          
-          
-          
-        <div class="archive-post">
-          <div class="archive-post-content">
-            
-              <p>这是我第一个（成功运行的）博客，我将会在这里记录学习的一点一滴。</p>
-<p>如果确定将长期使用的话，就去买个域名。</p>
-<p>这里会暂时性的留一些小工具：<br>
-            
-          </p></div>
-          <div class="archive-post-info">
-            <time class="archive-post-time">
-              2019-06-17
-            </time>
-            <a class="archive-post-link" href="/2019/06/17/hello-world/">
-              Hello Hexo
-            </a>
-          </div>
-        </div>
-      
-      
-        
-      
-  </div>
+    
+  </article>
   
-  <nav class="pagination">
-      <span class="page-number current">1</span>
+    
+  <nav class="article-page">
+    
+    
+      <a href="/2019/07/03/tips-for-MATLAB/" id="art-right" class="art-right">
+        <span class="prev-title">
+          MATLAB related<i class="iconfont icon-enter"></i>
+        </span>
+      </a>
+    
   </nav>
 
 
+    
+  <i id="com-switch" class="iconfont icon-more jumping-in long infinite" style="font-size:24px;display:block;text-align:center;transform:rotate(180deg);"></i>
+  <div class="post-comments" id="post-comments" style="display: block;margin: auto 16px;">
+    
+    
+    
+
+    
+
+  </div>
+
+
+
+  
+  
+    
+  
+  <aside class="post-toc">
+    <div class="title"><span>Index</span></div>
+    <div class="toc-inner">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week-4"><span class="toc-text">Week 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Networks"><span class="toc-text">Neural Networks</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+
+
+
+  
 
 
         </div>
-      </div></div></main>
+      </main>
       <footer class="footer syuanpi fadeIn" id="footer">
   <hr>
   <div class="footer-wrapper">
@@ -442,8 +384,22 @@
   <script src="/script/scheme/banderole.js"></script>
 
 
-<script src="/script/bootstarp.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<script src="/script/bootstarp.js"></script>
 
+
+<script>
+if (nlviconfig.theme.toc) {
+  setTimeout(function() {
+    if (nlviconfig.theme.scheme === 'balance') {
+      $("#header").addClass("show_toc");
+    } else if (nlviconfig.theme.scheme === 'banderole') {
+      $(".container-inner").addClass("has_toc");
+      $(".post-toc .title").addClass("show");
+      $(".toc-inner").addClass("show");
+    }
+  }, 1000);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 
 

@@ -13,6 +13,10 @@
 <meta name="format-detection" content="telephone=no">
 
 
+  <meta name="subtitle" content="xxxxx">
+
+
+  <meta name="description" content="oooooo">
 
 
 
@@ -64,6 +68,8 @@
   <title>
   Oalvay's Blog
   
+    | xxxxx
+  
 </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <body>
@@ -73,6 +79,8 @@
     <div class="logo">
   <div class="logo-inner syuanpi tvIn">
     <h1><a href="/">Oalvay's Blog</a></h1>
+    
+      <span id="subtitle">xxxxx</span>
     
   </div>
 </div>
@@ -86,10 +94,10 @@
     
   
     <li class="menu-item">
-      <a href="/archives" id="archives">
+      <a href="/about" id="about">
         <span class="base-name">
           
-            ARCHIVES
+            ABOUT
           
         </span>
       </a>
@@ -112,10 +120,10 @@
     
   
     <li class="menu-item">
-      <a href="/about" id="about">
+      <a href="/archives" id="archives">
         <span class="base-name">
           
-            ABOUT
+            ARCHIVES
           
         </span>
       </a>
@@ -144,9 +152,9 @@
     <ul class="mobile-header-list">
       
         <li class="mobile-nav-item syuanpi fadeInRightShort back-0">
-          <a href="/archives">
+          <a href="/about">
             
-              ARCHIVES
+              ABOUT
             
           </a>
         </li>
@@ -160,9 +168,9 @@
         </li>
       
         <li class="mobile-nav-item syuanpi fadeInRightShort back-2">
-          <a href="/about">
+          <a href="/archives">
             
-              ABOUT
+              ARCHIVES
             
           </a>
         </li>
@@ -180,6 +188,51 @@
   
 
 <section class="posts">
+  
+    
+  
+  <article class="
+  post
+  
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          <time>2019-07-08</time>
+          
+        </div>
+      </div>
+      <h2 class="post-title syuanpi fadeInRightShort back-2">
+        
+          <a href="/2019/07/08/ML-Coursera-p2/">Study notes for ML By Coursera (part 2)</a>
+        
+      </h2>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        
+          <p>This blog contains materials from the course <a href="https://www.coursera.org/learn/machine-learning/" target="_blank">Machine Learning</a> ran by Coursera</p>
+<h2 id="Week-4"><a href="#Week-4" class="headerlink" title="Week 4"></a>Week 4</h2><h3 id="Neural-Networks"><a href="#Neural-Networks" class="headerlink" title="Neural Networks"></a>Neural Networks</h3><p>Neurons are computational units that take inputs (<strong>dendrites</strong>) as electrical inputs (called <strong>spikes</strong>) that are channeled to outputs (<strong>axons</strong>). There are also intermediate layers of nodes between the input and output layers called the <strong>hidden layers</strong>, and the nodes inside are named <strong>activation units</strong>.</p>
+<script type="math/tex; mode=display">\begin{align*}& a_i^{(j)} = \text{"activation" of unit i in layer j} \newline& \Theta^{(j)} = \text{matrix of weights controlling function mapping from layer j to layer j+1}\end{align*}</script><p>If we had one hidden layer, it would look like:</p>
+<p><img src="http://www.wildml.com/wp-content/uploads/2015/09/nn-from-scratch-3-layer-network.png" width="%"></p>
+<p>Here we will use the following example:</p>
+<script type="math/tex; mode=display">\begin{bmatrix}x_0 \newline x_1 \newline x_2 \newline x_3\end{bmatrix}\rightarrow\begin{bmatrix}a_1^{(2)} \newline a_2^{(2)} \newline a_3^{(2)} \newline \end{bmatrix}\rightarrow h_\theta(x)</script><p>The values for each of the “activation” nodes is obtained as follows:</p>
+<script type="math/tex; mode=display">\begin{align*} a_1^{(2)} = g(\Theta_{10}^{(1)}x_0 + \Theta_{11}^{(1)}x_1 + \Theta_{12}^{(1)}x_2 + \Theta_{13}^{(1)}x_3) \newline a_2^{(2)} = g(\Theta_{20}^{(1)}x_0 + \Theta_{21}^{(1)}x_1 + \Theta_{22}^{(1)}x_2 + \Theta_{23}^{(1)}x_3) \newline a_3^{(2)} = g(\Theta_{30}^{(1)}x_0 + \Theta_{31}^{(1)}x_1 + \Theta_{32}^{(1)}x_2 + \Theta_{33}^{(1)}x_3) \newline \end{align*}</script><p>This is saying that we compute our activation nodes by using a 3×4 matrix of parameters. We apply each row of the parameters to our inputs to obtain the value for one activation node.</p>
+<p>Our hypothesis output is the logistic function applied to the sum of the values of our activation nodes, which have been multiplied by yet another parameter matrix, containing the weights for our second layer of nodes:</p>
+<script type="math/tex; mode=display">h_\Theta(x) = a_1^{(3)} = g(\Theta_{10}^{(2)}a_0^{(2)} + \Theta_{11}^{(2)}a_1^{(2)} + \Theta_{12}^{(2)}a_2^{(2)} + \Theta_{13}^{(2)}a_3^{(2)})</script><p>The dimensions of these matrices of weights is determined as follows:</p>
+<script type="math/tex; mode=display">\text{If network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer $j+1$, then $\Theta^{(j)}$ will be of dimension $s_{j+1} \times (s_j + 1)$.}</script><script type="math/tex; mode=display">\text{Each layer gets its own matrix of weights, $Θ^{(j)}$.}</script>
+        
+      
+    
+    </div>
+    
+    
+  </article>
+  
+  
+    
+  
+
   
     
   
@@ -238,7 +291,7 @@
       </div>
       <h2 class="post-title syuanpi fadeInRightShort back-2">
         
-          <a href="/2019/07/02/ML(Coursera)(p1)/">Study notes for ML By Coursera (part 1)</a>
+          <a href="/2019/07/02/ML-Coursera-p1/">Study notes for ML By Coursera (part 1)</a>
         
       </h2>
     </header>
@@ -250,7 +303,7 @@
       
     
       <p class="content-link">
-        <a href="/2019/07/02/ML(Coursera)(p1)/#more">
+        <a href="/2019/07/02/ML-Coursera-p1/#more">
           <span>Read More...</span>
         </a>
       </p>
@@ -431,34 +484,34 @@
   <div class="tagcloud-taglist">
   
     <div class="tagcloud-tag">
-      <button>主线剧情</button>
+      <button>技多不压身</button>
     </div>
   
     <div class="tagcloud-tag">
-      <button>技多不压身</button>
+      <button>主线剧情</button>
     </div>
   
   </div>
   
     <div class="tagcloud-postlist active">
-      <h2>主线剧情</h2>
-      
-        <div class="tagcloud-post">
-          <a href="/2019/06/17/hello-world/">
-            <time class="tagcloud-posttime">2019 / 06 / 17</time>
-            <span>Hello Hexo</span>
-          </a>
-        </div>
-      
-    </div>
-  
-    <div class="tagcloud-postlist ">
       <h2>技多不压身</h2>
       
         <div class="tagcloud-post">
           <a href="/2019/06/17/hexo-github-搭建博客小记/">
             <time class="tagcloud-posttime">2019 / 06 / 17</time>
             <span>hexo+github 搭建博客小记</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>主线剧情</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/06/17/hello-world/">
+            <time class="tagcloud-posttime">2019 / 06 / 17</time>
+            <span>Hello Hexo</span>
           </a>
         </div>
       

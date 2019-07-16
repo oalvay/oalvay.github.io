@@ -65,7 +65,7 @@
 
 
 
-  <title> Study notes for ML By Coursera (part 2) · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Study notes for Machine Learning By Coursera (part 2) · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container" style="display:none;">
@@ -195,7 +195,7 @@
       </div>
       <h2 class="post-title syuanpi fadeInRightShort back-2">
         
-          Study notes for ML By Coursera (part 2)
+          Study notes for Machine Learning By Coursera (part 2)
         
       </h2>
     </header>
@@ -227,7 +227,7 @@
 <p>For examples with a hidden layer, please refers to the notes in <a href="https://www.coursera.org/learn/machine-learning/supplement/5iqtV/examples-and-intuitions-ii" target="_blank">Examples and Intuitions II</a></p>
 <h4 id="Multiclass-Classification"><a href="#Multiclass-Classification" class="headerlink" title="Multiclass Classification"></a>Multiclass Classification</h4><p>This is done similarly to the one for logistic regression where we use the one-vs-all method. Saying we want to distinguish amongst a car, pedestrian, truck, or motorcycle, then instead of letting hypothesis equals to 1, 2, 3, 4 to correspond to each of them, we set:</p>
 <script type="math/tex; mode=display">h_\Theta(x) =\begin{bmatrix}1 \newline 0 \newline 0 \newline 0 \newline\end{bmatrix},\begin{bmatrix}0 \newline 1 \newline 0 \newline 0 \newline\end{bmatrix},\begin{bmatrix}0 \newline 0 \newline 1 \newline 0 \newline\end{bmatrix},\begin{bmatrix}0 \newline 0 \newline 0 \newline 1 \newline\end{bmatrix}</script><p>So that we can construct a nerual network with 4 output nodes.</p>
-<h4 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h4><p>Our cost function for neural networks is going to be a generalization of the one we used for logistic regression:</p>
+<h2 id="Week-5"><a href="#Week-5" class="headerlink" title="Week 5"></a>Week 5</h2><h4 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h4><p>Our cost function for neural networks is going to be a generalization of the one we used for logistic regression:</p>
 <script type="math/tex; mode=display">\begin{gather*} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}_k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}_k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum_{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather*}</script><script type="math/tex; mode=display">\begin{align*}\text{where} \ \ \ \ L &= \text{total number of layers in the network}
 \newline s_l &= \text{number of units (not counting bias unit) in layer} \ l \newline K &= \text{number of output units/classes}
 \newline h_{\Theta}(x)_k &= \text{a hypothesis that results in the $k^{th}$ output } \end{align*}</script><p>We have added a few nested summations to account for our multiple output nodes. In the first part of the equation, before the square brackets, we have an additional nested summation that loops through the number of output nodes.</p>
@@ -268,8 +268,39 @@
 <p>The capital-delta matrix D is used as an “accumulator” to add up our values as we go along and eventually compute our partial derivative. Thus we get:</p>
 <script type="math/tex; mode=display">\frac \partial {\partial \Theta_{ij}^{(l)}} J(\Theta)</script><p>From above we can see Step 4 is doing the most important job, where the <script type="math/tex">\delta^{(l)}_j</script> is actually called the “error” of <script type="math/tex">a^{(l)}_j</script> (unit j in layer l). More formally, the delta values are actually the derivative of the cost function <script type="math/tex">cost(t) =y^{(t)} \ \log (h_\Theta (x^{(t)})) + (1 - y^{(t)})\ \log (1 - h_\Theta(x^{(t)}))</script> (binary classfication case):</p>
 <script type="math/tex; mode=display">\delta_j^{(l)} = \dfrac{\partial}{\partial z_j^{(l)}} cost(t)</script><h4 id="Implementation-Note-Unrolling-Parameters"><a href="#Implementation-Note-Unrolling-Parameters" class="headerlink" title="Implementation Note: Unrolling Parameters"></a>Implementation Note: Unrolling Parameters</h4><p>In order to use optimizing functions such as “fminunc()” when training the neural network, we will want to “unroll” all the elements and put them into one long vector:</p>
-<p>Saying we have <script type="math/tex">\Theta^{(1)} \in \mathbb(R)^{10}, \Theta^{(2)}</script></p>
-
+<p>Saying we have <script type="math/tex">\Theta^{(1)} \in \mathbb{R}^{10×11}, \Theta^{(2)}\in \mathbb{R}^{10×11},\Theta^{(3)}\in \mathbb{R}^{11×1}</script></p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% In order to use optimizing functions such as "fminunc()", </span></span><br><span class="line"><span class="comment">% we will want to "unroll" all the elements and put them into one long vector:</span></span><br><span class="line">thetaVector = [ Theta1(:); Theta2(:); Theta3(:); ]</span><br><span class="line"></span><br><span class="line"><span class="comment">% we can also get back our original matrices from the "unrolled" versions</span></span><br><span class="line"><span class="comment">% as follows:</span></span><br><span class="line">Theta1 = <span class="built_in">reshape</span>(thetaVector(<span class="number">1</span>:<span class="number">110</span>),<span class="number">10</span>,<span class="number">11</span>)</span><br><span class="line">Theta2 = <span class="built_in">reshape</span>(thetaVector(<span class="number">111</span>:<span class="number">220</span>),<span class="number">10</span>,<span class="number">11</span>)</span><br><span class="line">Theta3 = <span class="built_in">reshape</span>(thetaVector(<span class="number">221</span>:<span class="number">231</span>),<span class="number">1</span>,<span class="number">11</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="Gradient-Checking"><a href="#Gradient-Checking" class="headerlink" title="Gradient Checking"></a>Gradient Checking</h4><p>In some case the cost function converges even when the neural network is not learning in the right way. Gradient checking will assure that our backpropagation works as intended. We can approximate the derivative of our cost function with:</p>
+<script type="math/tex; mode=display">\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}</script><p>With multiple theta matrices, we can approximate the derivative with <strong>respect to</strong> <script type="math/tex">\Theta_j</script> as follows:</p>
+<script type="math/tex; mode=display">\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}</script><p>In matlab we can do it as follows:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">epsilon = <span class="number">1e-4</span>;</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:n,</span><br><span class="line">  thetaPlus = theta;</span><br><span class="line">  thetaPlus(<span class="built_in">i</span>) += epsilon;</span><br><span class="line">  thetaMinus = theta;</span><br><span class="line">  thetaMinus(<span class="built_in">i</span>) -= epsilon;</span><br><span class="line">  gradApprox(<span class="built_in">i</span>) = (J(thetaPlus) - J(thetaMinus))/(<span class="number">2</span>*epsilon)</span><br><span class="line"><span class="keyword">end</span>;</span><br></pre></td></tr></table></figure>
+<p>A small value for ϵ (epsilon) such as ϵ=0.0001, guarantees that the math works out properly. If the value for ϵ is too small, we can end up with numerical problems.</p>
+<p>We previously saw how to calculate the deltaVector. So once we compute our gradApprox vector, we can check that gradApprox ≈ deltaVector. <span style="border-bottom:1.5px solid black;">Once you have verified once that your backpropagation algorithm is correct, you don’t need to compute gradApprox again. The code to compute gradApprox can be very slow.</span></p>
+<h4 id="Random-Initialization"><a href="#Random-Initialization" class="headerlink" title="Random Initialization"></a>Random Initialization</h4><p>Initializing all theta weights to zero does not work with neural networks. When we backpropagate, all nodes will update to <strong>the same value</strong> repeatedly. Instead we can randomly initialize each <script type="math/tex">\Theta_{ij}^{(l)}</script> to a random value between <script type="math/tex">[-\epsilon,\epsilon]</script>, then the above formula guarantees that we get the desired bound. In matlab, we can do:</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">% If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11.</span></span><br><span class="line"></span><br><span class="line">Theta1 = <span class="built_in">rand</span>(<span class="number">10</span>,<span class="number">11</span>) * (<span class="number">2</span> * INIT_EPSILON) - INIT_EPSILON;</span><br><span class="line">Theta2 = <span class="built_in">rand</span>(<span class="number">10</span>,<span class="number">11</span>) * (<span class="number">2</span> * INIT_EPSILON) - INIT_EPSILON;</span><br><span class="line">Theta3 = <span class="built_in">rand</span>(<span class="number">1</span>,<span class="number">11</span>) * (<span class="number">2</span> * INIT_EPSILON) - INIT_EPSILON;</span><br></pre></td></tr></table></figure>
+<p>rand(x,y) is just a function in octave that will initialize a matrix of random real numbers between 0 and 1.</p>
+<p>(Note: the epsilon used above is unrelated to the epsilon from Gradient Checking)</p>
+<h4 id="Putting-it-Together"><a href="#Putting-it-Together" class="headerlink" title="Putting it Together"></a>Putting it Together</h4><p>First, pick a network architecture; choose the layout of your neural network, including how many hidden units in each layer and how many layers in total you want to have.</p>
+<ul>
+<li>Number of input units = dimension of features <script type="math/tex">x^{(i)}</script></li>
+<li>Number of output units = number of classes</li>
+<li>Number of hidden units per layer = usually more the better (must balance with cost of computation as it increases with more hidden units)</li>
+<li>Defaults: 1 hidden layer. If you have more than 1 hidden layer, then it is recommended that you have the same number of units in every hidden layer.</li>
+</ul>
+<h5 id="Training-a-Neural-Network"><a href="#Training-a-Neural-Network" class="headerlink" title="Training a Neural Network"></a>Training a Neural Network</h5><ol>
+<li>Randomly initialize the weights</li>
+<li>Implement forward propagation to get <script type="math/tex">h_Θ(x^{(i)})</script> for any <script type="math/tex">x^{(i)}</script></li>
+<li>Implement the cost function</li>
+<li>Implement backpropagation to compute partial derivatives</li>
+<li>Use gradient checking to confirm that your backpropagation works. Then disable gradient checking.</li>
+<li>Use gradient descent or a built-in optimization function to minimize the cost function with the weights in theta.</li>
+</ol>
+<p>Note that:</p>
+<ul>
+<li>Ideally, you want <script type="math/tex">h_Θ(x^{(i)}) \approx y^{(i)}</script> . This will minimize our cost function. However, keep in mind that J(Θ) is not convex and thus we can end up in a local minimum instead.</li>
+<li>When we perform forward and back propagation, we loop on every training example:</li>
+</ul>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:m,</span><br><span class="line">   Perform forward propagation and backpropagation using example (x(<span class="built_in">i</span>),y(<span class="built_in">i</span>))</span><br><span class="line">   (Get activations a(l) and delta terms d(l) <span class="keyword">for</span> l = <span class="number">2</span>,...,L</span><br></pre></td></tr></table></figure>
       
     
     </div>
@@ -283,6 +314,12 @@
   
     
   <nav class="article-page">
+    
+      <a href="/2019/07/16/ML-part3/" id="art-left" class="art-left">
+        <span class="next-title">
+          <i class="iconfont icon-back"></i>Study notes for Machine Learning By Coursera (part 2)
+        </span>
+      </a>
     
     
       <a href="/2019/07/03/tips-for-MATLAB/" id="art-right" class="art-right">
@@ -314,7 +351,7 @@
   <aside class="post-toc">
     <div class="title"><span>Index</span></div>
     <div class="toc-inner">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week-4"><span class="toc-text">Week 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Networks"><span class="toc-text">Neural Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vectorized-implementation"><span class="toc-text">Vectorized implementation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Forward-propagation"><span class="toc-text">Forward propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiclass-Classification"><span class="toc-text">Multiclass Classification</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost-function"><span class="toc-text">Cost function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Back-propagation"><span class="toc-text">Back propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Implementation-Note-Unrolling-Parameters"><span class="toc-text">Implementation Note: Unrolling Parameters</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week-4"><span class="toc-text">Week 4</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Neural-Networks"><span class="toc-text">Neural Networks</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Vectorized-implementation"><span class="toc-text">Vectorized implementation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Forward-propagation"><span class="toc-text">Forward propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Example"><span class="toc-text">Example</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiclass-Classification"><span class="toc-text">Multiclass Classification</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Week-5"><span class="toc-text">Week 5</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost-function"><span class="toc-text">Cost function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Back-propagation"><span class="toc-text">Back propagation</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Implementation-Note-Unrolling-Parameters"><span class="toc-text">Implementation Note: Unrolling Parameters</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Gradient-Checking"><span class="toc-text">Gradient Checking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random-Initialization"><span class="toc-text">Random Initialization</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Putting-it-Together"><span class="toc-text">Putting it Together</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Training-a-Neural-Network"><span class="toc-text">Training a Neural Network</span></a></li></ol></li></ol></li></ol>
     </div>
   </aside>
 
@@ -382,34 +419,34 @@
   <div class="tagcloud-taglist">
   
     <div class="tagcloud-tag">
-      <button>主线剧情</button>
+      <button>技多不压身</button>
     </div>
   
     <div class="tagcloud-tag">
-      <button>技多不压身</button>
+      <button>主线剧情</button>
     </div>
   
   </div>
   
     <div class="tagcloud-postlist active">
-      <h2>主线剧情</h2>
-      
-        <div class="tagcloud-post">
-          <a href="/2019/06/17/hello-world/">
-            <time class="tagcloud-posttime">2019 / 06 / 17</time>
-            <span>Hello Hexo</span>
-          </a>
-        </div>
-      
-    </div>
-  
-    <div class="tagcloud-postlist ">
       <h2>技多不压身</h2>
       
         <div class="tagcloud-post">
           <a href="/2019/06/17/hexo-github-搭建博客小记/">
             <time class="tagcloud-posttime">2019 / 06 / 17</time>
             <span>hexo+github 搭建博客小记</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>主线剧情</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/06/17/hello-world/">
+            <time class="tagcloud-posttime">2019 / 06 / 17</time>
+            <span>Hello Hexo</span>
           </a>
         </div>
       

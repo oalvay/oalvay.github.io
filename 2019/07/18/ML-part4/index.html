@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="browsermode" content="application">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Oalvay's Blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name="format-detection" content="telephone=no">
+
+
+
+
+
+
+<link rel="apple-touch-startup-image" media="(device-width: 375px)" href="assets/apple-launch-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(orientation: landscape)" href="assets/apple-touch-startup-image-2048x1496.png">
+<link rel="stylesheet" href="/style/style.css">
+<script>
+  var nlviconfig = {
+    title: "Oalvay's Blog",
+    author: "oalvay",
+    baseUrl: "/",
+    theme: {
+      scheme: "banderole",
+      lightbox: true,
+      animate: true,
+      search: false,
+      friends: false,
+      reward: false,
+      pjax: false,
+      lazy: false,
+      toc: true
+    }
+  }
+</script>
+
+
+
+
+    <link rel="stylesheet" href="/script/lib/lightbox/css/lightbox.min.css">
+
+
+
+
+    <link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <title> Notes for Coursera Machine Learning Week 7 · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container" style="display:none;">
+    <header class="header" id="header">
+  <div class="header-wrapper">
+    <div class="logo">
+  <div class="logo-inner syuanpi tvIn">
+    <h1><a href="/">Oalvay's Blog</a></h1>
+    
+  </div>
+</div>
+
+    <nav class="main-nav">
+  
+  <ul class="main-nav-list syuanpi tvIn">
+  
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/about" id="about">
+        <span class="base-name">
+          
+            ABOUT
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="javascript:;" id="tags">
+        <span class="base-name">
+          
+            TAGS
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/archives" id="archives">
+        <span class="base-name">
+          
+            ARCHIVES
+          
+        </span>
+      </a>
+    </li>
+  
+  
+  </ul>
+  
+</nav>
+
+  </div>
+</header>
+<div class="mobile-header" id="mobile-header">
+  <div class="mobile-header-nav">
+    <div class="mobile-header-item" id="mobile-left">
+      <div class="header-menu-item">
+        <div class="header-menu-line"></div>
+      </div>
+    </div>
+    <h1 class="mobile-header-title">
+      <a href="/">Oalvay's Blog</a>
+    </h1>
+    <div class="mobile-header-item"></div>
+  </div>
+  <div class="mobile-header-body">
+    <ul class="mobile-header-list">
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-0">
+          <a href="/about">
+            
+              ABOUT
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-1">
+          <a href="javascript:;" id="mobile-tags">
+            
+              TAGS
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-2">
+          <a href="/archives">
+            
+              ARCHIVES
+            
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    <div class="container-inner">
+      <main class="main" id="main">
+        <div class="main-wrapper">
+          
+    
+  
+  <article class="
+  post
+   is_post 
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          <time>2019-07-18</time>
+          
+        </div>
+      </div>
+      <h2 class="post-title syuanpi fadeInRightShort back-2">
+        
+          Notes for Coursera Machine Learning Week 7
+        
+      </h2>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        <p>Contents: Support Vector Machine</p>
+<p>BAD NEWS: Sadly, Couresara is no longer providing reading notes from this chapter and onwards for some reason (e.g. laze). That means I have to make the ENTIRE study notes by myself.</p>
+<a id="more"></a>
+<h2 id="Week-7"><a href="#Week-7" class="headerlink" title="Week 7"></a>Week 7</h2><h3 id="Support-Vector-Machine"><a href="#Support-Vector-Machine" class="headerlink" title="Support Vector Machine"></a>Support Vector Machine</h3><h4 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h4><p>The cost function for SVM is somehow similar to the one for logistic regression, such that we can get it by only editing a few things on the later one:</p>
+<ul>
+<li>replace <script type="math/tex">-\log h_\theta(x^{(i)})</script> and <script type="math/tex">-\log (1 - h_\theta(x^{(i)})</script> by <script type="math/tex">cost_1(\theta^T x^{(i)})</script> and <script type="math/tex">cost_0(\theta^T x^{(i)} )</script> respectively:</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/alexeygrigorev/wiki-figures/master/legacy/svm-cost.png" size></p>
+<ul>
+<li>multiply the whole function by m</li>
+<li>instead of multiply λ on the regularized term, we multiply a constant C on the data set terms (so that if C = <script type="math/tex">\frac{1}{\lambda}</script>, this edition has little effect)</li>
+</ul>
+<p>So here is the brand new cost function:</p>
+<script type="math/tex; mode=display">\min_\theta C \ \sum_{i=1}^m [y^{(i)} cost_1(\theta^T x^{(i)}) + (1-y^{(i)}) \ cost_0(\theta^T x^{(i)})] + \frac{1}{2} \sum_{j=1}^{n}\theta_j^2</script><p>And in order to minimise the cost function, we want <script type="math/tex">\begin{align*}  & \theta^T x^{(i)} \geq 1\quad \mbox{if}\ y^{(i)} = 1\\ & \theta^T x^{(i)} \leq -1\quad \mbox{if}\ y^{(i)} = 0 \end{align*}</script>.</p>
+<p>SVM is a <strong>Large margin classifier</strong>, by this I mean the algorithm is trying to seek a decision boundary such that the distances between different groups of observations and the oundary are maximised. The following explain this mathematically:</p>
+<p>Firstly, it can be shown that <script type="math/tex">\theta^T x^{(i)} = \|\theta\|\cdot p^{(i)}</script>, where <script type="math/tex">p^{(i)}</script> is the projection of <script type="math/tex">x^{(i)}</script> onto <script type="math/tex">\theta</script>, the graph below shows two examples of <script type="math/tex">p^{(i)}</script>:</p>
+<p><img src="http://www.holehouse.org/mlclass/12_Support_Vector_Machines_files/Image%20[36].png" size></p>
+<p>Remeber that we are trying to minimise the cost function. Using the substitution above our goal is make <script type="math/tex">\begin{align*}  & \|\theta\|\cdot p^{(i)} \geq 1\quad \mbox{if}\ y^{(i)} = 1\\ & \|\theta\|\cdot p^{(i)} \leq -1\quad \mbox{if}\ y^{(i)} = 0 \end{align*}</script>, that is to maximise <script type="math/tex">p^{(i)}</script> by manipulating θ.  The graph below shows a much better choice than the last one:</p>
+<p><img src="http://www.holehouse.org/mlclass/12_Support_Vector_Machines_files/Image%20[38].png" size></p>
+<p>On the other hand, making <script type="math/tex">p^{(i)}</script> large allows us to make θ small, as there is also another term in the cost function: <script type="math/tex">\frac{1}{2} \sum_{i=1}^n \theta_i^2</script>, or equvalently, <script type="math/tex">\frac{1}{2} \|\theta\|</script>.</p>
+<p>Therefore it is clear that when C is getting large, the cost function becomes sensitive to the dataset, and thus sensitive to the outliers:</p>
+<p><img src="http://www.holehouse.org/mlclass/12_Support_Vector_Machines_files/Image%20[17].png" size></p>
+<p>I understand there is a lack of details in the above description, and I do strongly recommend you to go to have a look at a <a href="http://www.holehouse.org/mlclass/12_Support_Vector_Machines.html" target="_blank">detailed version</a> that I found online.</p>
+<h4 id="Kernel"><a href="#Kernel" class="headerlink" title="Kernel"></a>Kernel</h4><p>SVM is powerful to find non-linear boundaries, the secret behind it is called Kernel, all that about is the <strong>similarity function</strong>:</p>
+<p>Previously, our hypothesis was written as </p>
+<script type="math/tex; mode=display">h_\theta(X) = \theta_0 + \theta_1 x_1  + \theta_2 x_1x_2 + \theta_3 x_2^2 + ...</script><p>It’s then generalized by replacing <script type="math/tex">x_1</script>, <script type="math/tex">x_1x_2</script> and <script type="math/tex">x_2^2</script> as <script type="math/tex">f_1</script>, <script type="math/tex">f_2</script> and <script type="math/tex">f_3</script>:</p>
+<script type="math/tex; mode=display">h_\theta(X) = \theta_0 + \theta_1 f_1  + \theta_2 f_2 + \theta_3 f_3 + ...</script><p>so each f represent a function of features, and there are no differences except the replacements.<br>We now introdunce the <strong>similarity function</strong> <script type="math/tex">f_j</script>, the distance between x and some point, or <strong>landmark</strong> <script type="math/tex">l^{(j)}</script>:</p>
+<script type="math/tex; mode=display">f_j(x) = similarity(x, l^{(j)}) = k(x, l^{(j)}) = \exp(-\frac{\sum_{i=1}^n (x_i - l^{(j)}_i)^2}{2\sigma^2}) = \exp(-\frac{\|x-l^{(j)}\|^2}{2\sigma^2})</script><p>for some j = 1, 2, 3, …, m.  </p>
+<p>We can see <script type="math/tex">\|x-l^{(j)}\| \to 0 \implies f_j(x) \to 1</script> and <script type="math/tex">\|x-l^{(j)}\| \to \infty \implies f_j(x) \to 0</script>, and the algorithm is now motivated to minimise the distance from x’s to landmarks.</p>
+<p>Notice that there is a parameter in the function, σ. This controls the “tolerance” of distance, where an increase in σ makes the kernel less sensitive to <script type="math/tex">\|x-l^{(j)}\|</script>, namely the cost of being away to the landmark is now cheaper.  </p>
+<p><img src="https://i.stack.imgur.com/jCUj2.png" size><br>(σ decreases from left to right)</p>
+<p>The kernel used above is called the <strong>Gaussian Kernel</strong>, there are also other types of kernel.</p>
+<h4 id="Choosing-the-landmark"><a href="#Choosing-the-landmark" class="headerlink" title="Choosing the landmark"></a>Choosing the landmark</h4><p>Suppose there are m training examples. For each training example, we place a landmark at exactly the same location, so we end up with m of them, namely:</p>
+<script type="math/tex; mode=display">\begin{align*}
+&\text{Given} \ (x^{(i)}, y^{(i)}), \ \ \text{Set} \ \ l^{(i)} = x^{(i)} \ \ \ \forall i = 1, 2, ..., m
+\end{align*}</script><p>Therefore there are m kernels in total, for each example <script type="math/tex">(x^{(i)}, y^{(i)})</script> where <script type="math/tex">x^{(i)} \in \mathbb{R}^{n+1}</script>, we have the following representation:</p>
+<script type="math/tex; mode=display">f^{(i)} = \begin{bmatrix} 1 \newline similarity(x^{(i)}, l^{(1)}) \newline similarity(x^{(i)}, l^{(2)}) \newline ... \newline similarity(x^{(i)}, l^{(m)}) \newline \end{bmatrix} 
+= \begin{bmatrix} f^{(i)}_0 \newline f^{(i)}_1 \newline f^{(i)}_2 \newline ... \newline f^{(i)}_m \newline \end{bmatrix} 
+\in \mathbb{R}^{m+1}</script><p>From above we see there are m+1 new features, and our cost function is modified as:</p>
+<script type="math/tex; mode=display">\min_\theta C \ \sum_{i=1}^m [y^{(i)} cost_1(\theta^T f^{(i)}) + (1-y^{(i)}) \ cost_0(\theta^T f^{(i)})] + \frac{1}{2} \sum_{j=1}^{n}\theta_j^2</script><p><span style="border-bottom:1.5px solid black;">note that <strong>n = m</strong> since the number of features is the same as of training example.</span></p>
+<h4 id="When-Applying-SVM…"><a href="#When-Applying-SVM…" class="headerlink" title="When Applying SVM…"></a>When Applying SVM…</h4><ul>
+<li><p>Choice of parameter C and kernel (similarity function).</p>
+</li>
+<li><p>The kernel we used above is called <strong>Gaussian Kernel</strong>, there are also some other types of kernel are available to use (e.g. String kernel, chi-square kernel). A SVM without a kernel is called the <strong>linear kernel</strong> </p>
+</li>
+<li><p><span style="border-bottom:1.5px solid black;"><strong>Do</strong> perform feature scaling</span> before using the Gaussian kernel.</p>
+</li>
+<li><p><strong>Multi-class classification</strong>: Many SVM packages already have built-in multi-class classification functionality. Otherwise, use one-vs-all method. (Train <script type="math/tex">K</script> SVMs, one to distinguish <script type="math/tex">y = i</script> from the rest, for <script type="math/tex">i = 1, 2, ..., K</script>), get <script type="math/tex">\theta^{(1)}, \theta^{(2)}, ..., \theta^{(K)}</script>. Then pick class i with largest <script type="math/tex">(\theta^{(i)})^Tx</script>.</p>
+</li>
+</ul>
+<h5 id="Logistic-regression-VS-SVM"><a href="#Logistic-regression-VS-SVM" class="headerlink" title="Logistic regression VS SVM"></a>Logistic regression VS SVM</h5><p>These two algorithms are similar, that makes the which-to-use decision hard. Here are some suggestions for it:</p>
+<p>Let n and m be the number of features and number of training examples respectively, then</p>
+<ul>
+<li>When n large and m small: Use logistic regression, or SVM without a kernel (linear kernel)</li>
+<li>When n small and m large: Create/add more features, then use logistic regression or linear kernel.</li>
+<li>If n is small, m is intermediate: Use SVM with Gaussian kernel, as the computation is relatively less expensive in this case.</li>
+<li>Also, neural network is likely to work well for most of these settings, but may be slower to train.</li>
+</ul>
+
+      
+    
+    </div>
+    
+    
+      
+
+      
+    
+  </article>
+  
+    
+  <nav class="article-page">
+    
+    
+      <a href="/2019/07/16/ML-part3/" id="art-right" class="art-right">
+        <span class="prev-title">
+          Notes for Coursera Machine Learning Week 6<i class="iconfont icon-enter"></i>
+        </span>
+      </a>
+    
+  </nav>
+
+
+    
+  <i id="com-switch" class="iconfont icon-more jumping-in long infinite" style="font-size:24px;display:block;text-align:center;transform:rotate(180deg);"></i>
+  <div class="post-comments" id="post-comments" style="display: block;margin: auto 16px;">
+    
+    
+    
+
+    
+
+  </div>
+
+
+
+  
+  
+    
+  
+  <aside class="post-toc">
+    <div class="title"><span>Index</span></div>
+    <div class="toc-inner">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Week-7"><span class="toc-text">Week 7</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Support-Vector-Machine"><span class="toc-text">Support Vector Machine</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost-function"><span class="toc-text">Cost function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Kernel"><span class="toc-text">Kernel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Choosing-the-landmark"><span class="toc-text">Choosing the landmark</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#When-Applying-SVM…"><span class="toc-text">When Applying SVM…</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Logistic-regression-VS-SVM"><span class="toc-text">Logistic regression VS SVM</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </aside>
+
+
+
+  
+
+
+        </div>
+      </main>
+      <footer class="footer syuanpi fadeIn" id="footer">
+  <hr>
+  <div class="footer-wrapper">
+    <div class="left">
+      <div class="contact-icon">
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
+            <a href="https://github.com/oalvay" class="iconfont icon-social-github" title="github"></a>
+        
+        
+        
+        
+        
+        
+        
+        
+    
+</div>
+
+    </div>
+    <div class="right">
+      <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>2019 ~ 2019</span>
+        <span>❤</span>
+        <span>oalvay</span>
+    </div>
+    <div class="theme">
+        <span>
+            Powered by
+            <a href="http://hexo.io/" target="_blank">Hexo </a>
+        </span>
+        <span>
+            Theme
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+
+    </div>
+  </div>
+</footer>
+    </div>
+    <div class="tagcloud" id="tagcloud">
+  <div class="tagcloud-taglist">
+  
+    <div class="tagcloud-tag">
+      <button>主线剧情</button>
+    </div>
+  
+    <div class="tagcloud-tag">
+      <button>技多不压身</button>
+    </div>
+  
+  </div>
+  
+    <div class="tagcloud-postlist active">
+      <h2>主线剧情</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/06/17/hello-world/">
+            <time class="tagcloud-posttime">2019 / 06 / 17</time>
+            <span>Hello Hexo</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>技多不压身</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/06/17/hexo-github-搭建博客小记/">
+            <time class="tagcloud-posttime">2019 / 06 / 17</time>
+            <span>hexo+github 搭建博客小记</span>
+          </a>
+        </div>
+      
+    </div>
+  
+</div>
+
+  </div>
+  <div class="backtop syuanpi melt toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+
+
+<script src="/script/lib/jquery/jquery-3.2.1.min.js"></script>
+
+
+  <script src="/script/lib/lightbox/js/lightbox.min.js"></script>
+
+
+
+  <script src="https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"], ["\\(","\\)"]]}});</script>
+
+
+
+
+
+
+
+  <script src="/script/scheme/banderole.js"></script>
+
+
+<script src="/script/bootstarp.js"></script>
+
+
+<script>
+if (nlviconfig.theme.toc) {
+  setTimeout(function() {
+    if (nlviconfig.theme.scheme === 'balance') {
+      $("#header").addClass("show_toc");
+    } else if (nlviconfig.theme.scheme === 'banderole') {
+      $(".container-inner").addClass("has_toc");
+      $(".post-toc .title").addClass("show");
+      $(".toc-inner").addClass("show");
+    }
+  }, 1000);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

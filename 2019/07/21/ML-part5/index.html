@@ -195,7 +195,9 @@
     </header>
     <div class="post-content syuanpi fadeInRightShort back-3">
       
-        <p><strong>Unsupervised learning</strong> allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
+        <p>Contents: Unsupervised learning algorithm —- K-means and Principal Component Analysis</p>
+<a id="more"></a>
+<p><strong>Unsupervised learning</strong> allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
 <h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>K-means clustering is the fisrt unsupervised algorithm that we are going to learn, it aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. </p>
 <h4 id="Input"><a href="#Input" class="headerlink" title="Input:"></a>Input:</h4><ul>
 <li>K — Number of clusters</li>
@@ -214,44 +216,29 @@
 <p><span style="border-bottom:1.5px solid black;">Randomly initialize</span> K cluster centroids <script type="math/tex">\mu_1, \mu_2, ..., \mu_K \in \mathbb{R}^n</script></p>
 <p>Repeat {</p>
 <ul>
-<li>for i = 1 to m  <script type="math/tex; mode=display">\ \ \ \ \ \ c^{(i)}$$ := index of cluster centroid closest to $$x^{(i)}$$, where $$c^{(i)} \in \mathbb{N}^K</script></li>
-<li><p>for k = 1 to K  </p>
-<script type="math/tex; mode=display">\ \ \ \ \ \ \mu_k$$ := average of points assigned to cluster k, namely:$$\mu_k := \frac{1}{\text{number of }j} \sum_{j: c^{(j)} = k} x^{(j)}</script><p>}</p>
+<li>for i = 1 to m<br><script type="math/tex">\ \ \ \ \ \ c^{(i)}</script> := index of cluster centroid closest to <script type="math/tex">x^{(i)}</script>, where <script type="math/tex">c^{(i)} \in \mathbb{N}^K</script>.  </li>
+<li><p>for k = 1 to K<br><script type="math/tex">\ \ \ \ \ \ \mu_k</script> := average of points assigned to cluster k, namely:<script type="math/tex">\mu_k := \frac{1}{\text{number of }j} \sum_{j: c^{(j)} = k} x^{(j)}</script>.</p>
+<p>}</p>
 </li>
 </ul>
 <hr>
-<p>The first for loop is the clusters assignment step, where it’s minimising J by reassigning </p>
-<script type="math/tex; mode=display">c^{(i)}$$'s  to closest clusters, holding $$\mu_k$$'s fixed, while the second for loop is minimising J by moving centroids, leaving $$c^{(i)}$$ unchanged. So the cycle continues until the algorithm converges to the global minimum, and... what if it's a local minimum?
-
-<img src="http://trendsofcode.net/kmeans/img/83C451EE-9706-4903-BD5F-A5AAA740F3B9.png" size => 
-
-For above we see there are many case where the K-means gives unexpected results, one way to solve this is to rerun the algorithm many times with different initializations, a pseudo code looks like:
-
+<p>The first for loop is the clusters assignment step, where it’s minimising J by reassigning <script type="math/tex">c^{(i)}</script> ‘s  to closest clusters, holding <script type="math/tex">\mu_k</script> ‘s fixed, while the second for loop is minimising J by moving centroids, leaving <script type="math/tex">c^{(i)}</script> unchanged. So the cycle continues until the algorithm converges to the global minimum, and… what if it’s a local minimum?</p>
+<p><img src="http://trendsofcode.net/kmeans/img/83C451EE-9706-4903-BD5F-A5AAA740F3B9.png" size> </p>
+<p>For above we see there are many case where the K-means gives unexpected results, one way to solve this is to rerun the algorithm many times with different initializations, a pseudo code looks like:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i = 1 to 100 &#123;</span><br><span class="line">    Randomly initialize K</span><br><span class="line">    Run K-means to get c_1, ..., c_m, μ_1, ..., μ_K.</span><br><span class="line">    Compute cost function J</span><br><span class="line">&#125;</span><br><span class="line">Pick clustering that gave lowest J</span><br></pre></td></tr></table></figure>
-
-Remeber that when testing the cross validation set, make sure use PCA first, then 
-apply the algorithm.
-
-
-#### Choosing the value of K
-
-How many clusters? A hard question. It's the most common case that people choose it manually, but here is a little trick that you might consider to use -- the **Elbow method**
-
-<img src="https://www.researchgate.net/profile/Chirag_Deb/publication/320986519/figure/fig8/AS:560163938422791@1510564898246/Result-of-the-elbow-method-to-determine-optimum-number-of-clusters.png" size = 
-
-Consider the image above as a part of human body: the highest point is the shoulder, the lowest is the hand, and the point surrounded by red circle is the elbow. It's suggested that we shall choose the elbow point to decide how many clusters to use, as all the marginal costs after this point become insignificant and so are unnecessary.
-
-On the other hands, you sometimes may run K-means to get clusters to use for some <span style="border-bottom:1.5px solid black;">later/downstream purpose </span>(e.g. sizes of T-shirt -- S,M,L or XS, S, M, L, SL?), and evaluate K-means based on a metric for how well it performs for that later purpose.
-
-## Principal Component Analysis
-
-PCA is a powerful unsupervised algorithm that can reduce data from n dimensions(features) to k dimensions, I will introduce it directly by showing how it works:
-
-+ Apply mean normalization and/or feature scaling to the dataset (**important**)
-
-+ Compute the n × n “covariance matrix”:
-
-$$\begin{align*}
+<p>Remeber that when testing the cross validation set, make sure use PCA first, then<br>apply the algorithm.</p>
+<h4 id="Choosing-the-value-of-K"><a href="#Choosing-the-value-of-K" class="headerlink" title="Choosing the value of K"></a>Choosing the value of K</h4><p>How many clusters? A hard question. It’s the most common case that people choose it manually, but here is a little trick that you might consider to use — the <strong>Elbow method</strong></p>
+<p><img src="https://www.researchgate.net/profile/Chirag_Deb/publication/320986519/figure/fig8/AS:560163938422791@1510564898246/Result-of-the-elbow-method-to-determine-optimum-number-of-clusters.png" size></p>
+<p>Consider the image above as a part of human body: the highest point is the shoulder, the lowest is the hand, and the point surrounded by red circle is the elbow. It’s suggested that we shall choose the elbow point to decide how many clusters to use, as all the marginal costs after this point become insignificant and so are unnecessary.</p>
+<p>On the other hands, you sometimes may run K-means to get clusters to use for some <span style="border-bottom:1.5px solid black;">later/downstream purpose </span>(e.g. sizes of T-shirt — S,M,L or XS, S, M, L, SL?), and evaluate K-means based on a metric for how well it performs for that later purpose.</p>
+<h2 id="Principal-Component-Analysis"><a href="#Principal-Component-Analysis" class="headerlink" title="Principal Component Analysis"></a>Principal Component Analysis</h2><p>PCA is a powerful unsupervised algorithm that can reduce data from n dimensions(features) to k dimensions, I will introduce it directly by showing how it works:</p>
+<ul>
+<li><p>Apply mean normalization and/or feature scaling to the dataset (<strong>important</strong>)</p>
+</li>
+<li><p>Compute the n × n “covariance matrix”:</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">\begin{align*}
 \Sigma =& \ \frac{1}{m} \sum_{i=1}^{m} (x^{(i)})(x^{(i)})^T, \text{where}\  x^{(i)} \in \mathbb{R}^{n×1}, \text{or} \newline
  =& \  \frac{1}{m} X^T X, \text{where} \ X \in \mathbb{R}^{m×n}
 \end{align*}</script><ul>
@@ -333,7 +320,7 @@ $$\begin{align*}
   <aside class="post-toc">
     <div class="title"><span>Index</span></div>
     <div class="toc-inner">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-means-algorithm"><span class="toc-text">K-means algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input"><span class="toc-text">Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost-function"><span class="toc-text">Cost function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random-initialization"><span class="toc-text">Random initialization</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Optimizating-objective"><span class="toc-text">Optimizating objective</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PCA-VS-Linear-Regression"><span class="toc-text">PCA VS. Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Choosing-k-number-of-principal-components"><span class="toc-text">Choosing k (number of principal components)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application"><span class="toc-text">Application</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#K-means-algorithm"><span class="toc-text">K-means algorithm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Input"><span class="toc-text">Input:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cost-function"><span class="toc-text">Cost function</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Random-initialization"><span class="toc-text">Random initialization</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Optimizating-objective"><span class="toc-text">Optimizating objective</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Choosing-the-value-of-K"><span class="toc-text">Choosing the value of K</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#Principal-Component-Analysis"><span class="toc-text">Principal Component Analysis</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PCA-VS-Linear-Regression"><span class="toc-text">PCA VS. Linear Regression</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Choosing-k-number-of-principal-components"><span class="toc-text">Choosing k (number of principal components)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Application"><span class="toc-text">Application</span></a></li></ol></li>
     </div>
   </aside>
 

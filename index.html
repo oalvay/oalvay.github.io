@@ -203,102 +203,15 @@
     <div class="post-content syuanpi fadeInRightShort back-3">
       
         
-          <p><strong>Unsupervised learning</strong> allows us to approach problems with little or no idea what our results should look like. We can derive structure from data where we don’t necessarily know the effect of the variables.</p>
-<h2 id="K-means-algorithm"><a href="#K-means-algorithm" class="headerlink" title="K-means algorithm"></a>K-means algorithm</h2><p>K-means clustering is the fisrt unsupervised algorithm that we are going to learn, it aims to partition n observations into k clusters in which each observation belongs to the cluster with the nearest mean, serving as a prototype of the cluster. </p>
-<h4 id="Input"><a href="#Input" class="headerlink" title="Input:"></a>Input:</h4><ul>
-<li>K — Number of clusters</li>
-<li>Training Set {<script type="math/tex">x^{(1)}, x^{(2)}, ..., x^{(m)},</script>}, where <script type="math/tex">x^{(i)} \in \mathbb{R}^n</script>. Note that we don’t need the bias term <script type="math/tex">x_0=1</script> here.</li>
-</ul>
-<h4 id="Cost-function"><a href="#Cost-function" class="headerlink" title="Cost function"></a>Cost function</h4><p>Firstly let:  </p>
-<ul>
-<li><script type="math/tex">c^{(i)}</script> = index of cluster (1, 2, .., K) to which example <script type="math/tex">x^{(i)}</script> is currently assigned</li>
-<li><script type="math/tex">\mu_k</script> = cluster centroid k ( <script type="math/tex">\mu_k \in \mathbb{R}^n</script>)</li>
-<li><script type="math/tex">\mu_{c^{(i)}}</script> = cluster centroid of cluster to which example <script type="math/tex">x^{(i)}</script> has been assigned </li>
-</ul>
-<p>Then the cost can be written as:</p>
-<script type="math/tex; mode=display">J(c^{(1)},...,c^{(m)}, \mu_1, ..., \mu_K) = \frac{1}{m} \sum^m_{i=1} \|x^{(i)}-\mu_{c^{(i)}}\|^2</script><h4 id="Random-initialization"><a href="#Random-initialization" class="headerlink" title="Random initialization"></a>Random initialization</h4><p>We initialize clusters by randomly pick K traning examples, then set <script type="math/tex">\mu_1, \mu_2, ..., \mu_K</script> equal to these examples. Formally:<br>Pick k distinct random integers <script type="math/tex">i_1, ..., i_k</script> from {1, .., m}, then set <script type="math/tex">\mu_1 = x^{(i_1)}, \mu_2 = x^{(i_2)}, ..., \mu_k = x^{(i_k)}</script>.</p>
-<h4 id="Optimizating-objective"><a href="#Optimizating-objective" class="headerlink" title="Optimizating objective"></a>Optimizating objective</h4><p>Next, in order to minimise the cost function, we find the appropriate values of <script type="math/tex">c^{(1)},...,c^{(m)}, \mu_1, ..., \mu_K</script> through the following iteration:</p>
-<hr>
-<p><span style="border-bottom:1.5px solid black;">Randomly initialize</span> K cluster centroids <script type="math/tex">\mu_1, \mu_2, ..., \mu_K \in \mathbb{R}^n</script></p>
-<p>Repeat {</p>
-<ul>
-<li>for i = 1 to m  <script type="math/tex; mode=display">\ \ \ \ \ \ c^{(i)}$$ := index of cluster centroid closest to $$x^{(i)}$$, where $$c^{(i)} \in \mathbb{N}^K</script></li>
-<li><p>for k = 1 to K  </p>
-<script type="math/tex; mode=display">\ \ \ \ \ \ \mu_k$$ := average of points assigned to cluster k, namely:$$\mu_k := \frac{1}{\text{number of }j} \sum_{j: c^{(j)} = k} x^{(j)}</script><p>}</p>
-</li>
-</ul>
-<hr>
-<p>The first for loop is the clusters assignment step, where it’s minimising J by reassigning </p>
-<script type="math/tex; mode=display">c^{(i)}$$'s  to closest clusters, holding $$\mu_k$$'s fixed, while the second for loop is minimising J by moving centroids, leaving $$c^{(i)}$$ unchanged. So the cycle continues until the algorithm converges to the global minimum, and... what if it's a local minimum?
-
-<img src="http://trendsofcode.net/kmeans/img/83C451EE-9706-4903-BD5F-A5AAA740F3B9.png" size => 
-
-For above we see there are many case where the K-means gives unexpected results, one way to solve this is to rerun the algorithm many times with different initializations, a pseudo code looks like:
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">for i = 1 to 100 &#123;</span><br><span class="line">    Randomly initialize K</span><br><span class="line">    Run K-means to get c_1, ..., c_m, μ_1, ..., μ_K.</span><br><span class="line">    Compute cost function J</span><br><span class="line">&#125;</span><br><span class="line">Pick clustering that gave lowest J</span><br></pre></td></tr></table></figure>
-
-Remeber that when testing the cross validation set, make sure use PCA first, then 
-apply the algorithm.
-
-
-#### Choosing the value of K
-
-How many clusters? A hard question. It's the most common case that people choose it manually, but here is a little trick that you might consider to use -- the **Elbow method**
-
-<img src="https://www.researchgate.net/profile/Chirag_Deb/publication/320986519/figure/fig8/AS:560163938422791@1510564898246/Result-of-the-elbow-method-to-determine-optimum-number-of-clusters.png" size = 
-
-Consider the image above as a part of human body: the highest point is the shoulder, the lowest is the hand, and the point surrounded by red circle is the elbow. It's suggested that we shall choose the elbow point to decide how many clusters to use, as all the marginal costs after this point become insignificant and so are unnecessary.
-
-On the other hands, you sometimes may run K-means to get clusters to use for some <span style="border-bottom:1.5px solid black;">later/downstream purpose </span>(e.g. sizes of T-shirt -- S,M,L or XS, S, M, L, SL?), and evaluate K-means based on a metric for how well it performs for that later purpose.
-
-## Principal Component Analysis
-
-PCA is a powerful unsupervised algorithm that can reduce data from n dimensions(features) to k dimensions, I will introduce it directly by showing how it works:
-
-+ Apply mean normalization and/or feature scaling to the dataset (**important**)
-
-+ Compute the n × n “covariance matrix”:
-
-$$\begin{align*}
-\Sigma =& \ \frac{1}{m} \sum_{i=1}^{m} (x^{(i)})(x^{(i)})^T, \text{where}\  x^{(i)} \in \mathbb{R}^{n×1}, \text{or} \newline
- =& \  \frac{1}{m} X^T X, \text{where} \ X \in \mathbb{R}^{m×n}
-\end{align*}</script><ul>
-<li>Computer the <strong>eigenvector</strong> U of the matric Σ:</li>
-</ul>
-<script type="math/tex; mode=display">U = \begin{bmatrix}\vert & \vert & & \vert \\ u^{(1)} & u^{(2)} & \dots & u^{(n)}\\ \vert & \vert & & \vert \end{bmatrix} \in \mathbb{R}^{n×n}</script><ul>
-<li>From the matrix U, select first k columns as <script type="math/tex">U_{reduced} \in \mathbb{R}^{n×k}</script>, then get our <script type="math/tex">i_{th}</script> example with new dimensions:</li>
-</ul>
-<script type="math/tex; mode=display">z^{(i)} = \begin{bmatrix}\vert & \vert & & \vert \\ u^{(1)} & u^{(2)} & \dots & u^{(k)}\\ \vert & \vert & & \vert \end{bmatrix}^T x^{(i)}= U_{reduced}^T x^{(i)} \in \mathbb{R}^{k×1}</script><ul>
-<li>Or if we want specific <script type="math/tex">j_{th}</script> feature, just use <script type="math/tex">z_j = (u^{(j)})^T x</script></li>
-</ul>
-<p>In matlab, we can get the eigenvectors and new example z as following:</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[U,S,V] = svd(Sigma);</span><br><span class="line">Ureduce = U(:,<span class="number">1</span>:k);</span><br><span class="line">z = Ureduce'*x;</span><br></pre></td></tr></table></figure>
-<h3 id="PCA-VS-Linear-Regression"><a href="#PCA-VS-Linear-Regression" class="headerlink" title="PCA VS. Linear Regression"></a>PCA VS. Linear Regression</h3><p>These two algorithms looks somehow similar but actually different. PCA is trying to minimising the following:</p>
-<script type="math/tex; mode=display">\frac{1}{m}\sum_{i=1}^m\|x^{(i)}-x^{(i)}_\text{approx}\|^2</script><p>While Linear Regression has a goal of minimising:</p>
-<script type="math/tex; mode=display">\frac{1}{m} \sum_{i=1}^m (h(x^{(i)}) - y^{(i)})^2</script><p>We can also see the difference from the graph below:</p>
-<p><img src="http://efavdb.com/wp-content/uploads/2018/06/pca_vs_linselect.jpg" size></p>
-<h3 id="Choosing-k-number-of-principal-components"><a href="#Choosing-k-number-of-principal-components" class="headerlink" title="Choosing k (number of principal components)"></a>Choosing k (number of principal components)</h3><p>When discussing PCA, rather than ask “what’s your value for k” , people would say “how many % of variance have you retained”. That means a strategy of choosing k by the following:</p>
-<ul>
-<li>Try PCA with k = 1 </li>
-<li>Check if <script type="math/tex">\frac{\frac{1}{m}\sum_{i=1}^m\|x^{(i)}-x^{(i)}_\text{approx}\|^2}{\frac{1}{m}\sum_{i=1}^m\|x^{(i)}\|^2} \leq 0.01</script></li>
-<li>if the above holds, then exits with current value of k. Otherwise, continue the loop with k += 1</li>
-</ul>
-<p>So we end up with the smallest possible value of k that retained 99% of variance， it’s totally fine to choose other number like 95% instead of 99%. Note that the formula above is the same as <script type="math/tex">1 - R^2</script> (1 - Coefficient of determination).</p>
-<p>Moreover, we can obtain this value by using the matrix S provided by the function <code>svd()</code> used above:</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[U,S,V] = svd(Sigma);</span><br></pre></td></tr></table></figure>
-<p>The S matrix will be a n by n matrix, and we have the procedure with exactly the same result:</p>
-<p>Pick smallest value of k which makes 99% of variance retained:</p>
-<script type="math/tex; mode=display">\frac{\sum_{i=1}^k S^{ii}}{\sum_{i=1}^n S^{ii}} \geq 0.99</script><h3 id="Application"><a href="#Application" class="headerlink" title="Application"></a>Application</h3><p>There are two main use of PCA:</p>
-<ul>
-<li><p>Compression —- For the purpose of reducing memory/disk needed to store data, or in order to speed up learning algorithm.</p>
-</li>
-<li><p>Visualization —- Reduce from a large nummber to 2 or 3 dimensions helps to extract the information and is able to visualize to show potential relationship.</p>
-</li>
-</ul>
-<p>However, it’s not a good use of PCA to try to prevent overfitting. It is true that fewer features makes overfit less likely to happen, but the loss of information may worse the performance. Instead, it is more reasonable to use regularization to do so.</p>
-
+          <p>Contents: Unsupervised learning algorithm —- K-means and Principal Component Analysis</p>
         
       
+    
+      <p class="content-link">
+        <a href="/2019/07/21/ML-part5/#more">
+          <span>Read More...</span>
+        </a>
+      </p>
     
     </div>
     

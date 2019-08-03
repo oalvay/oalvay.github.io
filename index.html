@@ -196,221 +196,22 @@
       </div>
       <h2 class="post-title syuanpi fadeInRightShort back-2">
         
-          <a href="/2019/07/25/PMQs-24-jul-2019/">PMQs-24-jul-2019</a>
+          <a href="/2019/07/25/ML-part6/">Notes for Coursera Machine Learning Week 9</a>
         
       </h2>
     </header>
     <div class="post-content syuanpi fadeInRightShort back-3">
       
         
-          <p>Conservatives manifesto — 保守党宣言<br>pledges, commitment — 承诺<br>Dispatch Boxes — 调度箱，用来运输机密公务文件<br>Uxbridge and South Ruislip — Boris的议会选区，被Corbin用来代指Boris</p>
-<p>Corbin 疯狂强调 Boris 的首相职位并非由选举而来</p>
-
+          <p>Contents: Anomaly detection and Recommender System</p>
         
       
     
-    </div>
-    
-    
-  </article>
-  
-  
-    
-  
-
-  
-    
-  
-  <article class="
-  post
-  
-  ">
-    <header class="post-header">
-      <div class="post-time syuanpi fadeInRightShort back-1">
-        <div class="post-time-wrapper">
-          <time>2019-07-25</time>
-          
-        </div>
-      </div>
-      <h2 class="post-title syuanpi fadeInRightShort back-2">
-        
-          <a href="/2019/07/25/ML-part6/">ML-part6</a>
-        
-      </h2>
-    </header>
-    <div class="post-content syuanpi fadeInRightShort back-3">
-      
-        
-          <h2 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h2><p>In a nutshell, it’s about using training set to obtain maximum likelyhood estimation(MLE) of parameters of <strong>Normal distribution</strong>, then use it to predict the probability of new examples being anomalies.</p>
-<ul>
-<li>Use training sets to calculate <strong>MLE</strong> of parameters <script type="math/tex">\mu_1,...,\mu_n, \sigma^2_1,..., \sigma2_n</script>:</li>
-</ul>
-<script type="math/tex; mode=display">\mu_j = \frac{1}{m} \sum_{i=1}^{m} x^{(i)}_j</script><script type="math/tex; mode=display">\sigma_j^2 = \frac{1}{m} \sum_{i=1}^{m} (x^{(i)}_j - \mu_j)^2</script><ul>
-<li>compute p(x) for new example <script type="math/tex">x \in \mathbb{R}^n</script>:</li>
-</ul>
-<script type="math/tex; mode=display">p(x) = \prod_{i=1}^n p(x_j; \mu_j, \sigma_j^2) = \prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}\sigma_j}\exp\left(-\frac{(x-\mu_j)^2}{2\sigma_j^2}\right)</script><ul>
-<li>preidct y based on p(x) with ϵ</li>
-</ul>
-<script type="math/tex; mode=display">y = \left\{\begin{array}{ll} 1 & \mbox{if } p(x) \leq \epsilon\\ 0 & \mbox{if } p(x) > \epsilon\end{array}\right.</script><p>Note that we assume all features are all <strong>independent</strong>, if any correlation exists amongest them, then either create new features manually (e.g. <script type="math/tex">x_3 = \frac{x_1}{x_2}</script>) to detect anomalies instead of the original ones (<script type="math/tex">x_1, x_2</script>), or use the <strong>multivariate Normal distribution</strong> (as the parameters of corvariace matrix ∑ generates potential relations automatically).</p>
-<h3 id="Evaluation-of-performace"><a href="#Evaluation-of-performace" class="headerlink" title="Evaluation of performace"></a>Evaluation of performace</h3><p>Classification accuracy is not a good way to measure the algorithm’s performance, because of skewed classes (so an algorithm that always predicts y = 0 will have high accuracy). So people usually prefer F-Score, Precision &amp; Recall or some other methods.</p>
-<h3 id="Split-between-train-amp-cv-sets-and-Choosing-ϵ"><a href="#Split-between-train-amp-cv-sets-and-Choosing-ϵ" class="headerlink" title="Split between train &amp; cv sets and Choosing ϵ"></a>Split between train &amp; cv sets and Choosing ϵ</h3><ul>
-<li><p>We are not able to use anomalies for training (get MLEs) so shall not include anu of them in the training sets. Instead use these anomalies in cv and test sets with a 50:50 split would be a nice choice. For instance, if we have 10000 normal and 20 abnormal examples, use 6000 of the normal ones for training, 2000 of normal ones and 10 of abnormal ones for cross validation and the rest for test.</p>
-</li>
-<li><p>The course did not introduce any method of choosing ϵ automatically, so we have to choose it manually (e.g. base on the performance on cross validation set).</p>
-</li>
-</ul>
-<h3 id="Anomaly-detection-vs-Supervised-learning"><a href="#Anomaly-detection-vs-Supervised-learning" class="headerlink" title="Anomaly detection vs. Supervised learning"></a>Anomaly detection vs. Supervised learning</h3><p>The usage of anomaly detection is kind of like classification isn’t it? You may wondering why not use supervised learning such as logistic regression instead, so the below explained how supervised learning would perform in two cases:</p>
-<ul>
-<li>skewed data —- Hard for supervised algorithm to learn. As there exists potentially many different types of anormalies, so future anomalies may look nothing like any of the anomalous examples we’ve seen so far.</li>
-<li>balanced data —-  Enough positive examples for algorithm to get a sense of what positive examples are like.</li>
-</ul>
-<p>So use supervised learning algorithm when the number of positive and negative examples are both large, otherwise anomaly detection would be prefered.</p>
-<p>The course gives some application scenario which can help you understand better:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Anomaly detection</th>
-<th>Supervised learning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Fraud detection</td>
-<td>Email spam classification (easy to get large number of spams)</td>
-</tr>
-<tr>
-<td>Manufacturing (e.g. aircraft engines)</td>
-<td>Weather prediction (sunny/ rainy/etc).</td>
-</tr>
-<tr>
-<td>Monitoring machines in a data center</td>
-<td>Cancer classification</td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Non-gaussian-features"><a href="#Non-gaussian-features" class="headerlink" title="Non-gaussian features"></a>Non-gaussian features</h3><p>If the data of a feature not bell-shaped curve, using one-to-one transformation (e.g. natural log for positively skewed data) might be a good idea.</p>
-<h2 id="Recommender-System"><a href="#Recommender-System" class="headerlink" title="Recommender System"></a>Recommender System</h2><h3 id="Content-Based-Recommendation"><a href="#Content-Based-Recommendation" class="headerlink" title="Content Based Recommendation"></a>Content Based Recommendation</h3><p>For this approachm, we assume that the features of contents are available to us. That means, for instance, we know how much romance or action content is in a movie, such that we are able to use these features to make predictions. The course gave the example below:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>Movie</th>
-<th>Alice (1)</th>
-<th>Bob (2)</th>
-<th>Carol (3)</th>
-<th>David (4)</th>
-<th>(romance)</th>
-<th>(action)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Love at last</td>
-<td>5</td>
-<td>5</td>
-<td>0</td>
-<td>0</td>
-<td>0.9</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Romance forever</td>
-<td>5</td>
-<td>?</td>
-<td>?</td>
-<td>0</td>
-<td>1.0</td>
-<td>0.01</td>
-</tr>
-<tr>
-<td>Cute puppies of love</td>
-<td>?</td>
-<td>4</td>
-<td>0</td>
-<td>?</td>
-<td>0.99</td>
-<td>0</td>
-</tr>
-<tr>
-<td>Nonstop car chases</td>
-<td>0</td>
-<td>0</td>
-<td>5</td>
-<td>4</td>
-<td>0.1</td>
-<td>1.0</td>
-</tr>
-<tr>
-<td>Swords vs. karate</td>
-<td>0</td>
-<td>0</td>
-<td>5</td>
-<td>?</td>
-<td>0</td>
-<td>0.9</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>We now define some notations for later problem formulation:</p>
-<script type="math/tex; mode=display">n_u$$ = no. users  
-$$n_m$$ = no. movies  
-$$r(i, j) = 1$$ if user j has rated movie i  
-$$y^{(i, j)}$$ = rating given by user j to movie i (define only if $$r(i, j) = 1$$)  
-$$x^{(i)}$$ = feature vector for movie i  
-$$\theta^{(j)}$$: For each user j, learn a parameter $$\theta^{(j)} \in \mathbb{R}^3$$ to predict how this user would rate movie i with $$(\theta^{(j)})^T x^{(i)} $$ stars.  
-
-For example, with the parameter $$\theta^{(1)} = \begin{bmatrix}0\\5\\0\end{bmatrix}$$, we predict Alice would rate *Cute puppies of love* a $$(\theta^{(1)})^T x^{(3)} = \begin{bmatrix}1 \ \ 0.99 \ \ 0\end{bmatrix} \begin{bmatrix}0\\5\\0\end{bmatrix} = 4.95$$ stars.
-
-
-### Optimization objective
-
-To learn a single parameter $$\theta^{(j)}$$ for user j:
-
-$$\min_{\theta^{(j)}} \frac{1}{2} \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2} \sum^n_{k=1} (\theta^{(j)}_k)^2</script><p>So to learn all parameters <script type="math/tex">\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n_u)}</script> simultaneously, we simply sum cost functions over all users :</p>
-<script type="math/tex; mode=display">\min_{\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n_u)}} \frac{1}{2}\color{Blue}{
-\sum^{n_u}_{j=1} \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i, j)})^2 } + \frac{\lambda}{2} \sum_{j=1}^{n_u} \sum^n_{k=1} (\theta^{(j)}_k)^2</script><h4 id="Gradient-Descend-update"><a href="#Gradient-Descend-update" class="headerlink" title="Gradient Descend update"></a>Gradient Descend update</h4><script type="math/tex; mode=display">\theta^{(j)}_k := 
-\left\{\begin{array}{ll}
- \theta^{(j)}_k - \alpha \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) x^{(k)} \ \ & \mbox{for k = 0}\\
-\theta^{(j)}_k - \alpha \left ( \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) x^{(k)} + \lambda \theta^{(j)}_k \right )\ \ & \mbox{for k ≠ 0} 
-\end{array}\right.</script><p>for <script type="math/tex">k = 1, ..., n_u</script>. </p>
-<h3 id="Collaborative-Filtering"><a href="#Collaborative-Filtering" class="headerlink" title="Collaborative Filtering"></a>Collaborative Filtering</h3><p>Now the roles are swaped. Given the parameters θ’s, the algorithm is able to predict x’s as the following: </p>
-<script type="math/tex; mode=display">\displaystyle \min_{x^{(1)},\dots,x^{(n_m)}} \frac{1}{2} \color{Blue}{
-\sum_{i=1}^{n_m}\sum_{j:r(i,j)=1}\left((\theta^{(j)})^T x^{(i)}-y^{(i,j)}\right)^2 } + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script><p>With Gradient Descend update:</p>
-<script type="math/tex; mode=display">x^{(i)}_k := 
-\left\{\begin{array}{ll}
- x^{(i)}_k - \alpha \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) \ \theta^{(j)} \ \ & \mbox{for k = 0}\\
-x^{(i)}_k - \alpha \left ( \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) \ \theta^{(j)} + \lambda x^{(i)}_k \right )\ \ & \mbox{for k ≠ 0} 
-\end{array}\right.</script><p>Therefore, given <script type="math/tex">x^{(1)},\dots,x^{(n_m)}</script>, we can estimate <script type="math/tex">\theta^{(1)},..., \theta^{(n_u)}</script>.<br>And given <script type="math/tex">\theta^{(1)},..., \theta^{(n_u)}</script>, we can estimate <script type="math/tex">x^{(1)},\dots,x^{(n_m)}</script>.  </p>
-<p>This algorithm that we are going to use is so-called <strong>Collaborative Filtering</strong>, where θ’s and x’s are estimated to estimate another.<br>You might have noticed the blue-highlighted parts in the cost functions above are actually the same. In fact, rather than update one follow by another, we are able to come up with a more efficent and elegant way to train the algorithm:</p>
-<script type="math/tex; mode=display">\min_{x^{(1)},\dots,x^{(n_m)},  \theta^{(1)},..., \theta^{(n_u)}} J(x^{(1)},\dots,x^{(n_m)}, \theta^{(1)},..., \theta^{(n_u)})</script><p>where <script type="math/tex">J(x^{(1)},\dots,x^{(n_m)}, \theta^{(1)},..., \theta^{(n_u)}) = \\ \frac{1}{2} 
-\color{Blue}{ \sum_{(i,j):r(i,j)=1}\left((\theta^{(j)})^T x^{(i)}-y^{(i,j)}\right)^2 } + \frac{\lambda}{2} \sum_{j=1}^{n_u} \sum^n_{k=1} (\theta^{(j)}_k)^2 + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script></p>
-<p>Note that the constant term <script type="math/tex">x_0</script>‘s and <script type="math/tex">\theta_0</script>‘s are no longer needed so are removed.</p>
-<p>In the algorithm we described, it is necessary to initialize x’s and θ’s to small random values to serves as <em>symmetry breaking</em> (similar to the random initialization of a neural network’s parameters) and ensures the algorithm learns features x’s that are different from each other.  </p>
-<h4 id="Summarised-procedure"><a href="#Summarised-procedure" class="headerlink" title="Summarised procedure"></a>Summarised procedure</h4><ol>
-<li>Initialize <script type="math/tex">x^{(1)},\dots,x^{(n_m)},  \theta^{(1)},..., \theta^{(n_u)}</script> to small random values.</li>
-<li>Minimize <script type="math/tex">J(x^{(1)},\dots,x^{(n_m)}, \theta^{(1)},..., \theta^{(n_u)})</script> using gradient descent or advanced optimization algorithm. E.g. <script type="math/tex; mode=display">\forall \ j = 1,..., n_u, i = 1,...,n_m : \\ x^{(i)}_k := x^{(i)}_k - \alpha \left ( \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) \ \theta^{(j)} + \lambda x^{(i)}_k \right ) \\ \theta^{(j)}_k := \theta^{(j)}_k - \alpha \left ( \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) x^{(k)} + \lambda \theta^{(j)}_k \right )</script></li>
-<li>For a user with parameters θ and a movie with (learned) features x, predict a star rating of <script type="math/tex">\theta^T x</script>.</li>
-</ol>
-<h3 id="Vectorization-Low-rank-matrix-factorization"><a href="#Vectorization-Low-rank-matrix-factorization" class="headerlink" title="Vectorization: Low rank matrix factorization"></a>Vectorization: Low rank matrix factorization</h3><p>It is intuitive to see that the whole process can be vectorised, we take the moving rating status as an example:</p>
-<script type="math/tex; mode=display">Y = \begin{bmatrix}
-5 & 5 & 0 & 0 \\
-5 & ? & ? & 0 \\
-? & 4 & 0 & ? \\
-0 & 0 & 5 & 4 \\
-0 & 0 & 5 & 0
-\end{bmatrix}</script><script type="math/tex; mode=display">\displaystyle h(x) = \begin{bmatrix} (x^{(1)})^T(\theta^{(1)}) & \ldots & (x^{(1)})^T(\theta^{(n_u)})\\ \vdots & \ddots & \vdots \\ (x^{(n_m)})^T(\theta^{(1)}) & \ldots & (x^{(n_m)})^T(\theta^{(n_u)})\end{bmatrix}</script><p>By vectorizing <script type="math/tex">X = \begin{bmatrix} - & (x^{(1)})^T & - \\ & \vdots & \\ - & (x^{(n_m)} & - \end{bmatrix},\ \Theta = \begin{bmatrix} - & (\theta^{(1)})^T & - \\ & \vdots & \\ - & (\theta^{(n_u)} & - \end{bmatrix}</script>, we are able to write the hypothesis in a much more beatiful way:</p>
-<script type="math/tex; mode=display">h(X) = X\Theta^T</script><p>This matrix is also called a low rank matrix.</p>
-<h4 id="Finding-related-movies"><a href="#Finding-related-movies" class="headerlink" title="Finding related movies"></a>Finding related movies</h4><p>For each movie i , we learn a feature vector <script type="math/tex">x^{(i)} \in \mathbb{R}^n</script>. E.g. <script type="math/tex">x^{(i)}_1</script> for romance, <script type="math/tex">x^{(i)}_2</script> for action, etc.</p>
-<p>Therefore, in order to find whether movie j is similar to movie i, we can compare their distance:</p>
-<script type="math/tex; mode=display">\| x^{(i)} - x^{(j)} \|</script><p>such that small distance would reasonably suggest similarity. So to find 5 most similar movies to movie i, just find the 5 movies with the smallest distance.</p>
-<h4 id="Mean-normalization"><a href="#Mean-normalization" class="headerlink" title="Mean normalization"></a>Mean normalization</h4><p>In the case where users have not rate any movie yet, the algorithm would predict these users to rate 0 for all movies as that minimise the cost function. Mean normalization is helpful to avoid this to happen by replacing <script type="math/tex">X\Theta^T</script> with <script type="math/tex">X\Theta^T + \mu</script> where μ is the means of movie ratings rated by some other users.</p>
-<p>However, unlike some other applications of feature scaling, we did not scale the movie ratings by dividing by standard deviation. This is because all the movie ratings are already comparable (e.g. 0 to 5 stars), so they are already on similar scales.</p>
-
-        
-      
+      <p class="content-link">
+        <a href="/2019/07/25/ML-part6/#more">
+          <span>Read More...</span>
+        </a>
+      </p>
     
     </div>
     

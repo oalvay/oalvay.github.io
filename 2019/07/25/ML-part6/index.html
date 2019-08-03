@@ -61,7 +61,7 @@
 
 
 
-  <title> ML-part6 · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title> Notes for Coursera Machine Learning Week 9 · Oalvay's Blog </title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 <body>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container" style="display:none;">
@@ -189,13 +189,15 @@
       </div>
       <h2 class="post-title syuanpi fadeInRightShort back-2">
         
-          ML-part6
+          Notes for Coursera Machine Learning Week 9
         
       </h2>
     </header>
     <div class="post-content syuanpi fadeInRightShort back-3">
       
-        <h2 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h2><p>In a nutshell, it’s about using training set to obtain maximum likelyhood estimation(MLE) of parameters of <strong>Normal distribution</strong>, then use it to predict the probability of new examples being anomalies.</p>
+        <p>Contents: Anomaly detection and Recommender System</p>
+<a id="more"></a>
+<h2 id="Anomaly-detection"><a href="#Anomaly-detection" class="headerlink" title="Anomaly detection"></a>Anomaly detection</h2><p>In a nutshell, it’s about using training set to obtain maximum likelyhood estimation(MLE) of parameters of <strong>Normal distribution</strong>, then use it to predict the probability of new examples being anomalies.</p>
 <ul>
 <li>Use training sets to calculate <strong>MLE</strong> of parameters <script type="math/tex">\mu_1,...,\mu_n, \sigma^2_1,..., \sigma2_n</script>:</li>
 </ul>
@@ -308,22 +310,18 @@
 </tbody>
 </table>
 </div>
-<p>We now define some notations for later problem formulation:</p>
-<script type="math/tex; mode=display">n_u$$ = no. users  
-$$n_m$$ = no. movies  
-$$r(i, j) = 1$$ if user j has rated movie i  
-$$y^{(i, j)}$$ = rating given by user j to movie i (define only if $$r(i, j) = 1$$)  
-$$x^{(i)}$$ = feature vector for movie i  
-$$\theta^{(j)}$$: For each user j, learn a parameter $$\theta^{(j)} \in \mathbb{R}^3$$ to predict how this user would rate movie i with $$(\theta^{(j)})^T x^{(i)} $$ stars.  
-
-For example, with the parameter $$\theta^{(1)} = \begin{bmatrix}0\\5\\0\end{bmatrix}$$, we predict Alice would rate *Cute puppies of love* a $$(\theta^{(1)})^T x^{(3)} = \begin{bmatrix}1 \ \ 0.99 \ \ 0\end{bmatrix} \begin{bmatrix}0\\5\\0\end{bmatrix} = 4.95$$ stars.
-
-
-### Optimization objective
-
-To learn a single parameter $$\theta^{(j)}$$ for user j:
-
-$$\min_{\theta^{(j)}} \frac{1}{2} \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2} \sum^n_{k=1} (\theta^{(j)}_k)^2</script><p>So to learn all parameters <script type="math/tex">\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n_u)}</script> simultaneously, we simply sum cost functions over all users :</p>
+<p>We now define some notations for later problem formulation:  </p>
+<ul>
+<li><script type="math/tex">n_u</script> = no. users  </li>
+<li><script type="math/tex">n_m</script> = no. movies  </li>
+<li><script type="math/tex">r(i, j) = 1</script> if user j has rated movie i  </li>
+<li><script type="math/tex">y^{(i, j)}</script> = rating given by user j to movie i (define only if <script type="math/tex">r(i, j) = 1</script>)  </li>
+<li><script type="math/tex">x^{(i)}</script> = feature vector for movie i  </li>
+<li><script type="math/tex">\theta^{(j)}</script>: For each user j, learn a parameter <script type="math/tex">\theta^{(j)} \in \mathbb{R}^3</script> to predict how this user would rate movie i with <script type="math/tex">(\theta^{(j)})^T x^{(i)}</script> stars.  </li>
+</ul>
+<p>For example, with the parameter <script type="math/tex">\theta^{(1)} = \begin{bmatrix}0\\5\\0\end{bmatrix}</script>, we predict Alice would rate <em>Cute puppies of love</em> a <script type="math/tex">(\theta^{(1)})^T x^{(3)} = \begin{bmatrix}1 \ \ 0.99 \ \ 0\end{bmatrix} \begin{bmatrix}0\\5\\0\end{bmatrix} = 4.95</script> stars.</p>
+<h3 id="Optimization-objective"><a href="#Optimization-objective" class="headerlink" title="Optimization objective"></a>Optimization objective</h3><p>To learn a single parameter <script type="math/tex">\theta^{(j)}</script> for user j:</p>
+<script type="math/tex; mode=display">\min_{\theta^{(j)}} \frac{1}{2} \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i, j)})^2 + \frac{\lambda}{2} \sum^n_{k=1} (\theta^{(j)}_k)^2</script><p>So to learn all parameters <script type="math/tex">\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n_u)}</script> simultaneously, we simply sum cost functions over all users :</p>
 <script type="math/tex; mode=display">\min_{\theta^{(1)}, \theta^{(2)}, ..., \theta^{(n_u)}} \frac{1}{2}\color{Blue}{
 \sum^{n_u}_{j=1} \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i, j)})^2 } + \frac{\lambda}{2} \sum_{j=1}^{n_u} \sum^n_{k=1} (\theta^{(j)}_k)^2</script><h4 id="Gradient-Descend-update"><a href="#Gradient-Descend-update" class="headerlink" title="Gradient Descend update"></a>Gradient Descend update</h4><script type="math/tex; mode=display">\theta^{(j)}_k := 
 \left\{\begin{array}{ll}
@@ -377,12 +375,6 @@ x^{(i)}_k - \alpha \left ( \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,
     
   <nav class="article-page">
     
-      <a href="/2019/07/25/PMQs-24-jul-2019/" id="art-left" class="art-left">
-        <span class="next-title">
-          <i class="iconfont icon-back"></i>PMQs-24-jul-2019
-        </span>
-      </a>
-    
     
       <a href="/2019/07/21/ML-part5/" id="art-right" class="art-right">
         <span class="prev-title">
@@ -413,7 +405,7 @@ x^{(i)}_k - \alpha \left ( \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,
   <aside class="post-toc">
     <div class="title"><span>Index</span></div>
     <div class="toc-inner">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anomaly-detection"><span class="toc-text">Anomaly detection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-of-performace"><span class="toc-text">Evaluation of performace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Split-between-train-amp-cv-sets-and-Choosing-ϵ"><span class="toc-text">Split between train &amp; cv sets and Choosing ϵ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anomaly-detection-vs-Supervised-learning"><span class="toc-text">Anomaly detection vs. Supervised learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-gaussian-features"><span class="toc-text">Non-gaussian features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recommender-System"><span class="toc-text">Recommender System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Based-Recommendation"><span class="toc-text">Content Based Recommendation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gradient-Descend-update"><span class="toc-text">Gradient Descend update</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collaborative-Filtering"><span class="toc-text">Collaborative Filtering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Summarised-procedure"><span class="toc-text">Summarised procedure</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vectorization-Low-rank-matrix-factorization"><span class="toc-text">Vectorization: Low rank matrix factorization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Finding-related-movies"><span class="toc-text">Finding related movies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mean-normalization"><span class="toc-text">Mean normalization</span></a></li></ol></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Anomaly-detection"><span class="toc-text">Anomaly detection</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Evaluation-of-performace"><span class="toc-text">Evaluation of performace</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Split-between-train-amp-cv-sets-and-Choosing-ϵ"><span class="toc-text">Split between train &amp; cv sets and Choosing ϵ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Anomaly-detection-vs-Supervised-learning"><span class="toc-text">Anomaly detection vs. Supervised learning</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-gaussian-features"><span class="toc-text">Non-gaussian features</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Recommender-System"><span class="toc-text">Recommender System</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Based-Recommendation"><span class="toc-text">Content Based Recommendation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Optimization-objective"><span class="toc-text">Optimization objective</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Gradient-Descend-update"><span class="toc-text">Gradient Descend update</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collaborative-Filtering"><span class="toc-text">Collaborative Filtering</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Summarised-procedure"><span class="toc-text">Summarised procedure</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vectorization-Low-rank-matrix-factorization"><span class="toc-text">Vectorization: Low rank matrix factorization</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Finding-related-movies"><span class="toc-text">Finding related movies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Mean-normalization"><span class="toc-text">Mean normalization</span></a></li></ol></li></ol></li></ol>
     </div>
   </aside>
 

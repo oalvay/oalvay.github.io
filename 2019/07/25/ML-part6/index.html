@@ -327,7 +327,7 @@
 \left\{\begin{array}{ll}
  \theta^{(j)}_k - \alpha \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) x^{(k)} \ \ & \mbox{for k = 0}\\
 \theta^{(j)}_k - \alpha \left ( \sum_{i: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,j)}) x^{(k)} + \lambda \theta^{(j)}_k \right )\ \ & \mbox{for k ≠ 0} 
-\end{array}\right.</script><p>for <script type="math/tex">k = 1, ..., n_u</script>. </p>
+\end{array}\right.</script><p>for <script type="math/tex">k = 1, ..., n</script> (number of features). </p>
 <h3 id="Collaborative-Filtering"><a href="#Collaborative-Filtering" class="headerlink" title="Collaborative Filtering"></a>Collaborative Filtering</h3><p>Now the roles are swaped. Given the parameters θ’s, the algorithm is able to predict x’s as the following: </p>
 <script type="math/tex; mode=display">\displaystyle \min_{x^{(1)},\dots,x^{(n_m)}} \frac{1}{2} \color{Blue}{
 \sum_{i=1}^{n_m}\sum_{j:r(i,j)=1}\left((\theta^{(j)})^T x^{(i)}-y^{(i,j)}\right)^2 } + \frac{\lambda}{2}\sum_{i=1}^{n_m}\sum_{k=1}^n(x_k^{(i)})^2</script><p>With Gradient Descend update:</p>
@@ -374,6 +374,12 @@ x^{(i)}_k - \alpha \left ( \sum_{j: r(i,j)=1} ((\theta^{(j)})^T x^{(i)} - y^{(i,
   
     
   <nav class="article-page">
+    
+      <a href="/2019/08/04/ML-part7/" id="art-left" class="art-left">
+        <span class="next-title">
+          <i class="iconfont icon-back"></i>Notes for Coursera Machine Learning Week 10-11
+        </span>
+      </a>
     
     
       <a href="/2019/07/21/ML-part5/" id="art-right" class="art-right">

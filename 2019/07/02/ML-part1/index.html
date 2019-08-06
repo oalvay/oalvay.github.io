@@ -16,6 +16,8 @@
 
 
 
+  <meta name="keywords" content="Machine learning Andrew Ng, nlvi">
+
 
 <link rel="apple-touch-startup-image" media="(device-width: 375px)" href="assets/apple-launch-1125x2436.png">
 <link rel="apple-touch-startup-image" media="(orientation: landscape)" href="assets/apple-touch-startup-image-2048x1496.png">
@@ -257,7 +259,7 @@ y's &= \text{"output" variables / "target" variable} \newline
 <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">options = optimset(<span class="string">'GradObj'</span>, <span class="string">'on'</span>, <span class="string">'MaxIter'</span>, <span class="number">100</span>);</span><br><span class="line">initialTheta = <span class="built_in">zeros</span>(<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line">   [optTheta, functionVal, exitFlag] = fminunc(@costFunction, initialTheta, options);</span><br></pre></td></tr></table></figure>
 <h3 id="Multiclass-Classification"><a href="#Multiclass-Classification" class="headerlink" title="Multiclass Classification"></a>Multiclass Classification</h3><p>For now we have y = {0,1…n}, one way we can choose is to divide our problem into n+1 binary classification problems; in each one, we choose one class and then lumping all the others into a single second class and then applying binary logistic regression, and then use the hypothesis that returned the highest value  (probability)as our prediction, namely pick the class that maximizes the hypothesises, mathematically:</p>
 <script type="math/tex; mode=display">\begin{align*}& y \in \lbrace0, 1 ... n\rbrace \newline& h_\theta^{(0)}(x) = P(y = 0 | x ; \theta) \newline& h_\theta^{(1)}(x) = P(y = 1 | x ; \theta) \newline& \cdots \newline& h_\theta^{(n)}(x) = P(y = n | x ; \theta) \newline& \mathrm{prediction} = \max_i( h_\theta ^{(i)}(x) )\newline\end{align*}</script><p>The following image shows an example of 3 classes:</p>
-<p><img src="https://miro.medium.com/max/1032/1*7sz-bpA4r_xSqAG3IJx-7w.jpeg" width="70%"></p>
+<p><img src="https://miro.medium.com/max/1032/1*7sz-bpA4r_xSqAG3IJx-7w.jpeg" width="60%"></p>
 <h3 id="Overfitting"><a href="#Overfitting" class="headerlink" title="Overfitting"></a>Overfitting</h3><p>Overfitting is caused by a hypothesis function that fits the available data but does not generalize well to predict new data. This terminology is applied to both linear and logistic regression. There are two main options to address the issue of overfitting:</p>
 <p>(1) Reduce the number of features</p>
 <ul>
@@ -285,6 +287,12 @@ y's &= \text{"output" variables / "target" variable} \newline
       
     
     </div>
+    
+      <div class="post-tags syuanpi fadeInRightShort back-3">
+      
+        <a href="/tags/Machine-learning-Andrew-Ng/">Machine learning Andrew Ng</a>
+      
+      </div>
     
     
       
@@ -407,10 +415,21 @@ y's &= \text{"output" variables / "target" variable} \newline
       <button>技多不压身</button>
     </div>
   
+    <div class="tagcloud-tag">
+      <button>Machine learning Andrew Ng</button>
+    </div>
+  
   </div>
   
     <div class="tagcloud-postlist active">
       <h2>主线剧情</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/08/06/ML-conclusion/">
+            <time class="tagcloud-posttime">2019 / 08 / 06</time>
+            <span>回首，小结与岔路口</span>
+          </a>
+        </div>
       
         <div class="tagcloud-post">
           <a href="/2019/06/17/hello-world/">
@@ -428,6 +447,60 @@ y's &= \text{"output" variables / "target" variable} \newline
           <a href="/2019/06/17/hexo-github-搭建博客小记/">
             <time class="tagcloud-posttime">2019 / 06 / 17</time>
             <span>hexo+github 搭建博客小记</span>
+          </a>
+        </div>
+      
+    </div>
+  
+    <div class="tagcloud-postlist ">
+      <h2>Machine learning Andrew Ng</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/18/ML-part4/">
+            <time class="tagcloud-posttime">2019 / 07 / 18</time>
+            <span>Notes for Coursera Machine Learning Week 7</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/21/ML-part5/">
+            <time class="tagcloud-posttime">2019 / 07 / 21</time>
+            <span>Notes for Coursera Machine Learning Week 8</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/08/04/ML-part7/">
+            <time class="tagcloud-posttime">2019 / 08 / 04</time>
+            <span>Notes for Coursera Machine Learning Week 10-11</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/16/ML-part3/">
+            <time class="tagcloud-posttime">2019 / 07 / 16</time>
+            <span>Notes for Coursera Machine Learning Week 6</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/25/ML-part6/">
+            <time class="tagcloud-posttime">2019 / 07 / 25</time>
+            <span>Notes for Coursera Machine Learning Week 9</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/02/ML-part1/">
+            <time class="tagcloud-posttime">2019 / 07 / 02</time>
+            <span>Notes for Coursera Machine Learning Week 1-3</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/08/ML-part2/">
+            <time class="tagcloud-posttime">2019 / 07 / 08</time>
+            <span>Notes for Coursera Machine Learning Week 4-5</span>
           </a>
         </div>
       

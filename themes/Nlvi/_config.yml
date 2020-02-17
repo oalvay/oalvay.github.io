@@ -1,0 +1,176 @@
+# ===========================================
+# Information Settings
+# ===========================================
+
+#navigation
+menu:
+  about: /about
+  tags: /tags
+  archives: /archives
+  # RSS: /atom.xml
+
+# favicon
+favicon:
+
+# ===========================================
+# Color&Schemes Setting
+# ===========================================
+
+## Common
+
+# Navigator Language
+local-nav: false
+
+# Mobile-Header
+# light | dark
+mobile-header: light
+
+# Scheme
+# banderole | balance
+scheme: banderole
+
+# Header Style
+# line | block
+header-style: line
+
+# theme-style
+# default: dark | green | blue | purple
+# miku | sakura | snowmiku
+theme-style: blue
+
+# ===========================================
+# Article Setting
+# ===========================================
+
+# Navigator in post
+toc: true
+
+# Use copyright infomation
+copyright:
+  enable: false
+  # license:
+
+#Reword button or message(fill your QRCode of any Pay.)
+reward:
+  enable: false
+  # message:
+  qrcode:
+    # alipay:
+    #   url:
+    #   message:
+    # wechat:
+    #   url:
+    #   message:
+    # paypal:
+    #   url:
+    #   message:
+
+# ===========================================
+# Social Contact
+# ===========================================
+
+# Comments // Please only switch one on.
+comments:
+  enable: false
+
+  # disqus:
+  # livere_datauid:
+
+  # changyan:
+  #   appid:
+  #   appkey:
+
+  # gitment:
+  #   owner:
+  #   repo:
+  #   client_id:
+  #   client_secret:
+
+# sub //Please just fill out ID.
+sub:
+#  facebook: 1
+#  twitter: 2
+#  instagram: 3
+#  weibo: 4
+#  zhihu: 5
+  github: oalvay
+#  linkedin: 7
+#  douban: 8
+
+#Friend link
+# friendLink:
+
+# ===========================================
+# Analytics
+# ===========================================
+
+analytics:
+  google:
+  baidu:
+
+#visit_count(Powered by busuanzi on http://busuanzi.ibruce.info/)
+visit_count: false
+
+# ===========================================
+# Theme Settings
+# ===========================================
+
+# pjax
+pjax: false
+
+# mathjax
+mathjax:
+  enable: true
+  per_page: true
+  cdn: //cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML
+# lightbox
+lightbox: true
+
+# lazyload
+lazyload: false
+
+# animate (Powered by Syuanpi on https://colmugx.github.io/Syuanpi.css)
+animate: true
+
+# Created Time
+since: 2019
+
+# plugin
+plugins:
+- hexo-renderer-mathjax
+
+# about
+# self:
+
+# ===========================================
+# Search Settings
+# ===========================================
+
+# Search
+search:
+  enable: false
+  label: Search
+
+# ===========================================
+# Documents Styles
+# ===========================================
+
+# article-fonts
+# default | Simsun | YaHei | Hel | Custom
+fonts-style: default
+
+# code-fonts
+# default | Custom
+code-style: default
+
+# ===========================================
+# WebApp Settings (iOS)
+# ===========================================
+
+
+# ===========================================
+# Version
+# ===========================================
+version: 3.0
+
+#theme_author: Co1MugX

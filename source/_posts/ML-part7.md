@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 10-11
 date: 2019-08-04 12:01:13
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: More types of gradient descent, online learning, pipeline and more

@@ -1,5 +1,5 @@
 ---
-title: MATLAB related
+title: MATLAB cheatsheet
 date: 2019-07-03 14:50:47
 tags:
 ---

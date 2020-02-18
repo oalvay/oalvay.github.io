@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 6  
 date: 2019-07-16 12:21:01
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: Evaluation and diagnosis for hypothesises.

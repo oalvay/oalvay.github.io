@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 8  
 date: 2019-07-21 17:22:21
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: Unsupervised learning algorithm --- K-means and Principal Component Analysis

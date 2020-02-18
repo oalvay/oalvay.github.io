@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 9
 date: 2019-07-25 12:01:41
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: Anomaly detection and Recommender System

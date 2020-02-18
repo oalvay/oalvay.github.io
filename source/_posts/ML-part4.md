@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 7  
 date: 2019-07-18 16:02:13
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: Support Vector Machine

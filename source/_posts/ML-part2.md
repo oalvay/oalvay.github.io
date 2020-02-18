@@ -2,7 +2,7 @@
 title: Notes for Coursera Machine Learning Week 4-5  
 date: 2019-07-08 12:50:34
 tags:
-- Machine learning Andrew Ng
+- Notes
 ---
 
 Contents: Neural Networks.

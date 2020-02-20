@@ -14,14 +14,15 @@ In the lecture theater, two big cameras were setted on third row, which means le
 
 ### Lecture 3: Convolutional Neural Networks
 
-This lecture is rather introductory and the contents are almost maths-free, but the audience still need some prior knowledge to understand fully.
+<u><font color=gray size=1>18:30-20:00 17 Feb, 2019</font></u>    
+
+This lecture is rather introductory and the content is almost maths-free, but the audience still need some prior knowledge to understand fully.
 
 ##### Main contents
 
-+ Motivation and basic idea. Eg. 
++ Motivation and basic idea.  
 
-
-![](https://user-images.githubusercontent.com/35874048/74758431-3dce5000-526f-11ea-9190-91c139554f7e.png)
+<img src="https://user-images.githubusercontent.com/35874048/74758431-3dce5000-526f-11ea-9190-91c139554f7e.png">
 
 + Various convolution methods: strided, depthwise, pooling, etc.
 
@@ -31,4 +32,4 @@ This lecture is rather introductory and the contents are almost maths-free, but 
 
 ##### Overall
 ★★★★☆
-The oral presentation is not attractive, but the speaker illustrated how CNN works in a fresh way. I would definitely say I now understand CNN better.
+The oral presentation is not attractive, but the speaker illustrated how CNN works in a fresh way. This $$1\frac{1}{2}$$ hours lecture made me understand CNN better.

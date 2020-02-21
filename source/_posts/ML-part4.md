@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 7  
+title: Coursera Machine Learning Week 7  
 date: 2019-07-18 16:02:13
 tags:
 - Notes

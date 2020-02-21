@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 8  
+title: Coursera Machine Learning Week 8  
 date: 2019-07-21 17:22:21
 tags:
 - Notes

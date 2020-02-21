@@ -13,3 +13,4 @@ Any quries please email:
 
 oalvay@foxmail.com
 
+<a href="https://www.kaggle.com/oalvay/">![](https://user-images.githubusercontent.com/35874048/74983038-2d63d400-542d-11ea-90ba-85609c75eb50.png)</a> &nbsp;&nbsp;&nbsp;<a href="https://github.com/oalvay">![](https://user-images.githubusercontent.com/35874048/74983718-022db480-542e-11ea-81fe-5f4f66311f79.jpg)</a>&nbsp;&nbsp;&nbsp;<a href="https://leetcode.com/oalvays/">![](https://user-images.githubusercontent.com/35874048/74983131-61d79000-542d-11ea-9a44-f1277fb9c57e.png)</a>

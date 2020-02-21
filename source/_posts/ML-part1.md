@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 1-3  
+title: Coursera Machine Learning Week 1-3  
 date: 2019-07-02 09:02:22
 tags: 
 - Notes

@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 10-11
+title: Coursera Machine Learning Week 10-11
 date: 2019-08-04 12:01:13
 tags:
 - Notes

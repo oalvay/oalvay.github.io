@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 6  
+title: Coursera Machine Learning Week 6  
 date: 2019-07-16 12:21:01
 tags:
 - Notes

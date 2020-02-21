@@ -1,5 +1,5 @@
 ---
-title: Notes for Coursera Machine Learning Week 9
+title: Coursera Machine Learning Week 9
 date: 2019-07-25 12:01:41
 tags:
 - Notes

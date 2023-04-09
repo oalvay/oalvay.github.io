@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Oalvay's Blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+
+
+
+
+
+  <meta name="keywords" content="Notes, nlvi" />
+
+
+<link rel="apple-touch-startup-image" media="(device-width: 375px)" href="assets/apple-launch-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(orientation: landscape)" href="assets/apple-touch-startup-image-2048x1496.png">
+
+<link rel="stylesheet" href="/style/style.css">
+
+<script>
+  var nlviconfig = {
+    title: "Oalvay's Blog",
+    author: "oalvay",
+    baseUrl: "/",
+    theme: {
+      scheme: "banderole",
+      lightbox: true,
+      animate: true,
+      search: false,
+      friends: false,
+      reward: false,
+      pjax: false,
+      lazy: false,
+      toc: true
+    }
+  }
+</script>
+
+
+
+
+    
+<link rel="stylesheet" href="/script/lib/lightbox/css/lightbox.min.css">
+
+
+
+
+
+    
+<link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@font-face {
+  font-family: "Allura";
+  src: url('/font/allura/allura.ttf');
+}
+</style>
+
+  <title> Decision and Risk - Part 1 · Oalvay's Blog </title>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container">
+    <header class="header" id="header">
+  <div class="header-wrapper">
+    <div class="logo">
+  <div class="logo-inner syuanpi tvIn" style="display:none;">
+    <h1><a href="/">Oalvay's Blog</a></h1>
+    
+  </div>
+</div>
+
+    <nav class="main-nav">
+  
+  <ul class="main-nav-list syuanpi tvIn">
+  
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/" id="home">
+        <span class="base-name">
+          
+            HOME
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="javascript:;" id="tags">
+        <span class="base-name">
+          
+            TAGS
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/archives" id="archives">
+        <span class="base-name">
+          
+            ARCHIVES
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/about" id="about">
+        <span class="base-name">
+          
+            ABOUT
+          
+        </span>
+      </a>
+    </li>
+  
+  
+  </ul>
+  
+</nav>
+
+  </div>
+</header>
+<div class="mobile-header" id="mobile-header">
+  <div class="mobile-header-nav">
+    <div class="mobile-header-item" id="mobile-left">
+      <div class="header-menu-item">
+        <div class="header-menu-line"></div>
+      </div>
+    </div>
+    <h1 class="mobile-header-title">
+      <a href="/">Oalvay's Blog</a>
+    </h1>
+    <div class="mobile-header-item"></div>
+  </div>
+  <div class="mobile-header-body">
+    <ul class="mobile-header-list">
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-0">
+          <a href="/" >
+            
+              HOME
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-1">
+          <a href="javascript:;" id="mobile-tags">
+            
+              TAGS
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-2">
+          <a href="/archives" >
+            
+              ARCHIVES
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-3">
+          <a href="/about" >
+            
+              ABOUT
+            
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    <div class="container-inner" style="display:none;">
+      <main class="main" id="main">
+        <div class="main-wrapper">
+          
+    
+  
+  <article class="
+  post
+   is_post 
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          
+          <time>2020-02-20</time>
+          
+        </div>
+      </div>
+      <h1 class="post-title syuanpi fadeInRightShort back-2">
+        
+          Decision and Risk - Part 1
+        
+      </h1>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        <p>I recently came up with an idea. Insteading of summarizing lectures by hands, how about using markdown and post on blog?</p>
+<a id="more"></a>
+<p><b><font size = 6>Recap</font></b></p>
+<p>By conditioning on the known value of the data y and using Bayes’ theorem, we yield the <strong>posterior density</strong>:</p>
+<script type="math/tex; mode=display">p(\theta|\mathbf{y}) = \frac{p(\theta, \mathbf{y})}{p(\mathbf{y})} = \frac{p(\theta)p(\mathbf{y}|\theta)}{p(\mathbf{y})}</script><p>where:  </p>
+<ul>
+<li><script type="math/tex">p(\theta∣\mathbf{y})</script> - is the <strong>posterior density</strong> for θ and represents the uncertainty about θ after conditioning on the data y.</li>
+<li><script type="math/tex">p(\theta)</script> - is the <strong>prior density</strong> for θ that expresses our uncertainty about the values of θ before taking into account sample information (i.e. observed data).</li>
+<li><script type="math/tex">p(\mathbf{y}|\theta)</script>  - when regarded as a function of θ, for fixed y, is the <strong>likelihood function</strong>.</li>
+<li><script type="math/tex">p(\mathbf{y})</script> - is the marginal density of the data y, normally written as:</li>
+</ul>
+<script type="math/tex; mode=display">p(\mathbf{y}) = \underbrace{\sum_{\theta} p(\theta)p(\mathbf{y}|\theta)}_{\mbox{discrete} \ \theta} = \underbrace{\int_{\theta} p(\theta)p(\mathbf{y}|\theta) \ d\theta}_{\mbox{continuous} \ \theta}</script><p>Or, by omitting the normalizing constant <script type="math/tex">p(\mathbf{y})</script>,we have the <strong>unnormalized posterior density</strong>:</p>
+<script type="math/tex; mode=display">\begin{align*}
+p(\theta∣\mathbf{y}) 
+& \propto p(\theta) \cdot p(\mathbf{y}|\theta) \\
+& \propto \text{prior pdf ⋅ likelihood function}
+\end{align*}</script><p>The parameters that controls prior distrition are called <strong>hyperparameters</strong>.</p>
+<hr>
+<p>In a Bayesian analysis, we first need to represent our prior beliefs about θ, by constructing a probability distribution p(θ) which encapsulates our beliefs.  </p>
+<p>p(θ) will not be the same for different people as they may have different knowledge about what proportion of coins are biased.</p>
+<p>In some cases, p(θ) may be based on subjective judgement, while in others it may be based on objective evidence. This is the essence of Bayesian statistics - probabilities express degrees of beliefs.</p>
+<h1 id="Decision-Theory"><a href="#Decision-Theory" class="headerlink" title="Decision Theory"></a>Decision Theory</h1><h2 id="Bayesian-decision-theory"><a href="#Bayesian-decision-theory" class="headerlink" title="Bayesian decision theory"></a>Bayesian decision theory</h2><p>- concerned with making decisions that perform best, based on the information we have about the un- knowns.</p>
+<h3 id="Basic-Elements-of-a-Decision-Problem"><a href="#Basic-Elements-of-a-Decision-Problem" class="headerlink" title="Basic Elements of a Decision Problem"></a>Basic Elements of a Decision Problem</h3><ul>
+<li><p>&nbsp;<script type="math/tex">\Theta</script> is the <strong>parameter space</strong> which consists of all possible “states of nature” or “states of the world” <script type="math/tex">\theta</script>, only one of which will occur. The “true” state of nature <script type="math/tex">\theta</script> is unknown.</p>
+</li>
+<li><p>&nbsp;<script type="math/tex">A = (a_1,a_2,...,a_k)</script> is the <strong>action space</strong>, which is the set of all pos- sible actions available, <script type="math/tex">a \in A</script> .</p>
+</li>
+<li><p>&nbsp;<script type="math/tex">\Omega</script> contains all possible realisations <script type="math/tex">y \in \Omega</script> of a random variable <script type="math/tex">Y</script> which belongs to the family <script type="math/tex">\{ f(y; \theta)∣ \theta \in \Theta \}</script></p>
+</li>
+<li><p>&nbsp;<script type="math/tex">L(\theta, a)</script> is a <strong>loss function</strong> that has the domain <script type="math/tex">Θ \times A = \{ (θ, a)∣ θ ∈ Θ \ \text{and} \ a ∈ A \}</script> and codomain <script type="math/tex">\mathbb{R}</script>. That is, a loss function maps each combination of states of the world θ and action a onto a numerical loss, R. For technical convenience, <script type="math/tex">L(θ, a) ≥ −K > −∞</script></p>
+</li>
+</ul>
+<h3 id="Loss-Function"><a href="#Loss-Function" class="headerlink" title="Loss Function"></a>Loss Function</h3><p>The loss function <script type="math/tex">L(\theta,a)</script> is a core element of decision making which represents the loss incurred if we choose action a when the true state of the world is <script type="math/tex">\theta</script> (usually unknown).</p>
+<p>The losses corresponding to each action and state of world θ can be represented by a loss matrix:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>&nbsp;</th>
+<th><script type="math/tex">\theta = 0</script>&nbsp;</th>
+<th><script type="math/tex">\theta = 1</script> &nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><script type="math/tex">a_1</script>&nbsp;</td>
+<td>0</td>
+<td>10</td>
+</tr>
+<tr>
+<td><script type="math/tex">a_0</script>&nbsp;</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>which fully specifies the loss function <script type="math/tex">L(\theta,a)</script> for all values of θ and a.</p>
+<p>If <script type="math/tex">\pi^*(\theta)</script> is the believed probability distribution of θ at the time of decision making, the <strong>Bayesian expected loss</strong> of an action <script type="math/tex">a</script> is:</p>
+<script type="math/tex; mode=display">\rho(\pi^*, a) = E^{\pi^*}L(\theta, a) = \int_{\Theta}L(\theta, a)\ dF^{\pi^*}(\theta)</script><p>where <script type="math/tex">F</script> is the c.d.f of the random variable X.</p>
+<h4 id="The-conditional-Bayes-Principle"><a href="#The-conditional-Bayes-Principle" class="headerlink" title="The conditional Bayes Principle"></a>The conditional Bayes Principle</h4><p>Choose an action <script type="math/tex">a \in A</script> which minimizes <script type="math/tex">\rho(\pi^*, a)</script> (assuming the minimum is attained). Such an action will be called a <strong>Bayes action</strong> and will be denoted <script type="math/tex">a^{\pi^*}</script></p>
+<p>Note: In a multiclass classification problem, we shall use the One vs Rest method to keep things simple.</p>
+<hr>
+<h2 id="Frequentist-Risk"><a href="#Frequentist-Risk" class="headerlink" title="Frequentist Risk"></a>Frequentist Risk</h2><p>A <strong>decision rule</strong> <script type="math/tex">\delta(x)</script> is a function from <script type="math/tex">\Omega</script> into <script type="math/tex">A</script>. Given a particular realization <script type="math/tex">X = x</script>, <script type="math/tex">\delta(x)</script> is the action that will be taken. </p>
+<p>Two decision rules, <script type="math/tex">\delta_1</script> and <script type="math/tex">\delta_2</script>, are said to be <u>equivalent</u> if <script type="math/tex">P_\theta (\delta_1(X) = \delta_1(X)) = 1</script> for all θ.</p>
+<p>The <strong>risk function</strong> of a decision rule <script type="math/tex">\delta(x)</script> is defined by:</p>
+<script type="math/tex; mode=display">R(\theta, \delta) = E^X_\theta[L(\theta, \delta(x))] = \int_\Theta L(\theta, \delta(x)) \ dF^X(x|\theta)</script><p>It is natural to use a decision rule <script type="math/tex">\delta(x)</script> which has smallest risk <script type="math/tex">R(\theta, \delta)</script>. However, in contrast to the Bayesian expected loss, the risk is a function of θ, and hence it is not a single number.<br>Since θ is unknown, the meaning of “smallest” is not clearly defined, so we need another way to choose decision.</p>
+<p>A decision rule <script type="math/tex">\delta_1</script>, is <strong>R-better</strong> than a decision rule <script type="math/tex">\delta_2</script>, if <script type="math/tex">R(\theta, \delta_1) ≤ R(\theta, \delta_2)</script> for all <script type="math/tex">\theta ∈ \Theta</script>, with strict inequality for some θ. A decision rule <script type="math/tex">\theta_1</script>, is <strong>R-equivalent</strong> to a decision rule <script type="math/tex">\theta_2</script>, if <script type="math/tex">R(\theta, \delta_1) = R(\theta, \delta_2)</script> for all <script type="math/tex">\theta ∈ \Theta</script>.</p>
+<p>A decision rule <script type="math/tex">\delta</script> is said to be <strong>admissible</strong> if there does not exist R-better decision rule. A decision rule <script type="math/tex">\delta</script> is <strong>inadmissible</strong> if there does exist an R-better decision rule.</p>
+<p>It’s clear that we shall never use an inadmissible decision rule, but the class of admissible decision rules for a given decision problem can be large. This means that there will be admissible rules with risk functions <script type="math/tex">R(\theta, \delta)</script> that are “better” in some regions of the parameter space <script type="math/tex">\Theta</script>, and “worse” in others, i.e. <em>risk functions cross</em>.</p>
+<hr>
+<h4 id="Randomized-decision-rule"><a href="#Randomized-decision-rule" class="headerlink" title="Randomized decision rule"></a>Randomized decision rule</h4><p>So far, we have considered <strong>deterministic decision rules</strong>.<br>That is, given a particular realization <script type="math/tex">X = x</script>, a deterministic decision rule <script type="math/tex">\delta(x)</script> is a function from <script type="math/tex">\Theta</script> into <script type="math/tex">A</script>. However, imaging that we are competing with an intelligent competitor, then decisions will have to be taken in a randomised manner.</p>
+<p>A <strong>randomized decision rule</strong> <script type="math/tex">\delta^∗(x,⋅)</script> is a probability distribution on A. That is, given that <script type="math/tex">X = x</script> is observed, <script type="math/tex">\delta^∗(x, a)</script> is the probability that an action in <script type="math/tex">a ⊆ A</script> will be chosen.<br><u><font color=gray size=2>Note: deterministic decision rules can be considered as a special case of randomized rules.</font></u></p>
+<p>In the absence of data, a randomized decision rule is also called a <u>randomized action</u>, which is denoted as <script type="math/tex">\delta^∗(⋅)</script>. It is also a probability distribution on <script type="math/tex">A</script>.</p>
+<p>Similar to before, the loss function <script type="math/tex">L(\theta,\delta^∗(x))</script> of the randomized rule <script type="math/tex">\delta_∗(x,⋅)</script> is: </p>
+<script type="math/tex; mode=display">L(\theta, \delta^∗(x)) = E^{\delta^*(x,⋅)}[L(\theta, a)]</script><p>And the risk function <script type="math/tex">R(\theta, \delta^∗)</script> of <script type="math/tex">\delta^*(x,⋅)</script> with the loss function L is:</p>
+<script type="math/tex; mode=display">R(\theta, \delta^∗) = E^X_\theta[L(\theta, \delta^∗(x))]
+= \int_\Theta L(\theta, \delta^∗(x)) \ dF^X(x|\theta)</script><p>For a no-data decision problem, we have <script type="math/tex">R(\theta, \delta^∗) = L(\theta, \delta^∗(x))</script>.</p>
+<h4 id="Usefulness-of-randomized-decision"><a href="#Usefulness-of-randomized-decision" class="headerlink" title="Usefulness of randomized decision"></a>Usefulness of randomized decision</h4><ul>
+<li>How often do decision problems involve an intelligent opponent?</li>
+<li>Whenever possible, each possible action has to be evaluated in order to find the optimal action:<ul>
+<li>If there is only one optimal action, then randomizing is of limited use.</li>
+<li>If there are 2 or more optimal actions, one could potentially choose at random, although the usefulness of doing so is questionable.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 id="Frequentist-Decision-Principles"><a href="#Frequentist-Decision-Principles" class="headerlink" title="Frequentist Decision Principles"></a>Frequentist Decision Principles</h3><p>We have seen that using risk functions to select a decision rule does not always produce a clear final choice. To overcome this limitation, we must introduce additional principles in order to select a specific decision rule.</p>
+<h4 id="The-Bayes-Risk-Principle"><a href="#The-Bayes-Risk-Principle" class="headerlink" title="The Bayes Risk Principle"></a>The Bayes Risk Principle</h4><p>The <strong>Bayes risk</strong> of a decision rule <script type="math/tex">\delta</script>, with respect to a prior distribution <script type="math/tex">\pi</script> on <script type="math/tex">\Theta</script>, is defined as:</p>
+<script type="math/tex; mode=display">r(\pi,\delta) = E_\pi[R(\theta,\delta)]</script><p>A decision rule <script type="math/tex">\delta_1</script> is preferred to a rule <script type="math/tex">\delta_2</script> if:</p>
+<script type="math/tex; mode=display">r(\pi,\delta_1) < r(\pi,\delta_2)</script><p>A decision rule is said to be optimal if it minimizes <script type="math/tex">r(\pi,\delta)</script>. This decision rule is called a <strong>Bayes rule</strong>, and will be denoted <script type="math/tex">\delta^\pi</script>.<br>The quantity <script type="math/tex">r(\pi) = r(\pi, \delta^\pi)</script> is then called <u>the Bayes risk for <script type="math/tex">\pi</script></u>.</p>
+<h4 id="The-Minimax-Principle"><a href="#The-Minimax-Principle" class="headerlink" title="The Minimax Principle"></a>The Minimax Principle</h4><p>Let <script type="math/tex">\delta^* \in D^*</script> be a randomized decision rule, then the worst case possible using this decision rule <script type="math/tex">\delta^*</script> is:</p>
+<script type="math/tex; mode=display">\sup_{\theta \in \Theta}R(\theta, \delta^*)</script><p>In order to protect from the worst case scenario, one should use the minimax principle.</p>
+<p><b><u>The Minimax Principle: </u></b><br>A decision rule <script type="math/tex">\delta^*_1</script> is preferred to a rule <script type="math/tex">\delta^*_2</script> if</p>
+<script type="math/tex; mode=display">\sup_{\theta \in \Theta}R(\theta, \delta^*_1) < \sup_{\theta \in \Theta}R(\theta, \delta^*_2)</script><p>A decision rule <script type="math/tex">\delta^{*M}</script> is a <strong>minimax decision rule</strong> if it minimizes <script type="math/tex">\sup_{\theta \in \Theta}R(\theta, \delta^*)</script> among all randomized rules in <script type="math/tex">D^*</script>, that is, if:</p>
+<script type="math/tex; mode=display">\sup_{\theta \in \Theta}R(\theta, \delta^*_M) = \inf_{\delta^* \in D^*} \sup_{\theta \in \Theta}R(\theta, \delta^*)</script><p>For a no-data decision problem, the minimax decision rule is simply called the <em>minimax action</em>.</p>
+
+      
+    
+    </div>
+    
+      <div class="post-tags syuanpi fadeInRightShort back-3">
+      
+        <a href="/tags/Notes/">Notes</a>
+      
+      </div>
+    
+    
+      
+
+      
+    
+  </article>
+  
+    
+  <nav class="article-page">
+    
+      <a href="/2020/02/21/stat0011-2/" id="art-left" class="art-left">
+        <span class="next-title">
+          <i class="iconfont icon-left"></i>Decision and Risk - Part 2
+        </span>
+      </a>
+    
+    
+      <a href="/2020/02/18/uclxdeepmind/" id="art-right" class="art-right">
+        <span class="prev-title">
+          UCL x Deepmind Lecture Series<i class="iconfont icon-right"></i>
+        </span>
+      </a>
+    
+  </nav>
+
+
+    
+  <i id="com-switch" class="iconfont icon-down jumping-in long infinite" style="font-size:24px;display:block;text-align:center;transform:rotate(180deg);"></i>
+  <div class="post-comments" id="post-comments" style="display: block;margin: auto 16px;">
+    
+
+    
+    
+
+    
+
+  </div>
+
+
+
+  
+  
+    
+  
+  <aside class="post-toc">
+    <div class="title"><span>Index</span></div>
+    <div class="toc-inner">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Decision-Theory"><span class="toc-text">Decision Theory</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bayesian-decision-theory"><span class="toc-text">Bayesian decision theory</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Basic-Elements-of-a-Decision-Problem"><span class="toc-text">Basic Elements of a Decision Problem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Loss-Function"><span class="toc-text">Loss Function</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-conditional-Bayes-Principle"><span class="toc-text">The conditional Bayes Principle</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Frequentist-Risk"><span class="toc-text">Frequentist Risk</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Randomized-decision-rule"><span class="toc-text">Randomized decision rule</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Usefulness-of-randomized-decision"><span class="toc-text">Usefulness of randomized decision</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Frequentist-Decision-Principles"><span class="toc-text">Frequentist Decision Principles</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Bayes-Risk-Principle"><span class="toc-text">The Bayes Risk Principle</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#The-Minimax-Principle"><span class="toc-text">The Minimax Principle</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </aside>
+
+
+
+  
+
+
+        </div>
+      </main>
+      <footer class="footer syuanpi fadeIn" id="footer">
+  <hr>
+  <div class="footer-wrapper">
+    <div class="left">
+      <div class="contact-icon">
+  
+  
+    <a href="https://github.com/oalvay" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+    </div>
+    <div class="right">
+      <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>2019 ~ 2023</span>
+        <span>❤</span>
+        <span>oalvay</span>
+    </div>
+    <div class="theme">
+        <span>
+            Powered by
+            <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo </a>
+        </span>
+        <span>
+            Theme
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi" target="_blank" rel="noopener"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+
+    </div>
+  </div>
+</footer>
+    </div>
+    <div class="tagcloud" id="tagcloud">
+  <div class="tagcloud-taglist">
+  
+    <div class="tagcloud-tag">
+      <button>Notes</button>
+    </div>
+  
+  </div>
+  
+    <div class="tagcloud-postlist active">
+      <h2>Notes</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/02/ML-part1/">
+            <time class="tagcloud-posttime">2019 / 07 / 02</time>
+            <span>Coursera Machine Learning Week 1-3</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/16/ML-part3/">
+            <time class="tagcloud-posttime">2019 / 07 / 16</time>
+            <span>Coursera Machine Learning Week 6</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/08/ML-part2/">
+            <time class="tagcloud-posttime">2019 / 07 / 08</time>
+            <span>Coursera Machine Learning Week 4-5</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/18/ML-part4/">
+            <time class="tagcloud-posttime">2019 / 07 / 18</time>
+            <span>Coursera Machine Learning Week 7</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/21/ML-part5/">
+            <time class="tagcloud-posttime">2019 / 07 / 21</time>
+            <span>Coursera Machine Learning Week 8</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/25/ML-part6/">
+            <time class="tagcloud-posttime">2019 / 07 / 25</time>
+            <span>Coursera Machine Learning Week 9</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/08/04/ML-part7/">
+            <time class="tagcloud-posttime">2019 / 08 / 04</time>
+            <span>Coursera Machine Learning Week 10-11</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2020/02/20/stat0011-1/">
+            <time class="tagcloud-posttime">2020 / 02 / 20</time>
+            <span>Decision and Risk - Part 1</span>
+          </a>
+        </div>
+      
+    </div>
+  
+</div>
+
+  </div>
+  <div class="backtop syuanpi melt toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+
+
+  <script></script>
+  <script src="/script/lib/lightbox/js/lightbox.min.js" async></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"], ["\\(","\\)"]]}});</script>
+
+
+
+
+
+
+
+
+
+  
+<script src="/script/scheme/banderole.js"></script>
+
+
+
+
+<script src="/script/bootstarp.js"></script>
+
+
+
+<script>
+if (nlviconfig.theme.toc) {
+  setTimeout(function() {
+    if (nlviconfig.theme.scheme === 'balance') {
+      $("#header").addClass("show_toc");
+    } else if (nlviconfig.theme.scheme === 'banderole') {
+      $(".container-inner").addClass("has_toc");
+      $(".post-toc .title").addClass("show");
+      $(".toc-inner").addClass("show");
+    }
+  }, 1000);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

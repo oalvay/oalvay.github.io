@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="browsermode" content="application">
+<meta name="apple-touch-fullscreen" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Oalvay's Blog">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="msapplication-navbutton-color" content="#666666">
+<meta name= "format-detection" content="telephone=no" />
+
+
+
+
+
+
+<link rel="apple-touch-startup-image" media="(device-width: 375px)" href="assets/apple-launch-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(orientation: landscape)" href="assets/apple-touch-startup-image-2048x1496.png">
+
+<link rel="stylesheet" href="/style/style.css">
+
+<script>
+  var nlviconfig = {
+    title: "Oalvay's Blog",
+    author: "oalvay",
+    baseUrl: "/",
+    theme: {
+      scheme: "banderole",
+      lightbox: true,
+      animate: true,
+      search: false,
+      friends: false,
+      reward: false,
+      pjax: false,
+      lazy: false,
+      toc: true
+    }
+  }
+</script>
+
+
+
+
+    
+<link rel="stylesheet" href="/script/lib/lightbox/css/lightbox.min.css">
+
+
+
+
+
+    
+<link rel="stylesheet" href="/syuanpi/syuanpi.min.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+@font-face {
+  font-family: "Allura";
+  src: url('/font/allura/allura.ttf');
+}
+</style>
+
+  <title> Decision and Risk - Part 2 · Oalvay's Blog </title>
+<meta name="generator" content="Hexo 4.2.1"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<body>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container">
+    <header class="header" id="header">
+  <div class="header-wrapper">
+    <div class="logo">
+  <div class="logo-inner syuanpi tvIn" style="display:none;">
+    <h1><a href="/">Oalvay's Blog</a></h1>
+    
+  </div>
+</div>
+
+    <nav class="main-nav">
+  
+  <ul class="main-nav-list syuanpi tvIn">
+  
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/" id="home">
+        <span class="base-name">
+          
+            HOME
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="javascript:;" id="tags">
+        <span class="base-name">
+          
+            TAGS
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/archives" id="archives">
+        <span class="base-name">
+          
+            ARCHIVES
+          
+        </span>
+      </a>
+    </li>
+  
+  
+    
+  
+    <li class="menu-item">
+      <a href="/about" id="about">
+        <span class="base-name">
+          
+            ABOUT
+          
+        </span>
+      </a>
+    </li>
+  
+  
+  </ul>
+  
+</nav>
+
+  </div>
+</header>
+<div class="mobile-header" id="mobile-header">
+  <div class="mobile-header-nav">
+    <div class="mobile-header-item" id="mobile-left">
+      <div class="header-menu-item">
+        <div class="header-menu-line"></div>
+      </div>
+    </div>
+    <h1 class="mobile-header-title">
+      <a href="/">Oalvay's Blog</a>
+    </h1>
+    <div class="mobile-header-item"></div>
+  </div>
+  <div class="mobile-header-body">
+    <ul class="mobile-header-list">
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-0">
+          <a href="/" >
+            
+              HOME
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-1">
+          <a href="javascript:;" id="mobile-tags">
+            
+              TAGS
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-2">
+          <a href="/archives" >
+            
+              ARCHIVES
+            
+          </a>
+        </li>
+      
+        <li class="mobile-nav-item syuanpi fadeInRightShort back-3">
+          <a href="/about" >
+            
+              ABOUT
+            
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+</div>
+
+
+
+    <div class="container-inner" style="display:none;">
+      <main class="main" id="main">
+        <div class="main-wrapper">
+          
+    
+  
+  <article class="
+  post
+   is_post 
+  ">
+    <header class="post-header">
+      <div class="post-time syuanpi fadeInRightShort back-1">
+        <div class="post-time-wrapper">
+          
+          <time>2020-02-21</time>
+          
+        </div>
+      </div>
+      <h1 class="post-title syuanpi fadeInRightShort back-2">
+        
+          Decision and Risk - Part 2
+        
+      </h1>
+    </header>
+    <div class="post-content syuanpi fadeInRightShort back-3">
+      
+        <p>Contents: Value at Risk</p>
+<a id="more"></a>
+<p>Value-at-Risk is probably the most widely used risk measure in financial institutions. It is a measure for assessing the risk (i.e. the amount of potential loss) associated with an investment or a portfolio of investments.</p>
+<p>Basel Accord II and III prescribed Value-at-Risk as the market risk to ensure that a bank has adequate capital to be able to absorb losses.<br>• Basel III is a set of international banking regulations established by the Basel Committee on Banking Supervision in order to promote stability in the international financial system.</p>
+<p>Suppose a company holds a certain number of financial assets such as stocks, bonds, derivatives, etc. This collection of assets is called a <strong>portfolio</strong>. Everyday, the value of the portfolio will change, since the price of the individual assets in the portfolio change frequently. Therefore, it’s intuitive to ask “what is the probability of the value of the portfolio dropping by more than 10 million dollars on a given day?”. Knowing this is essential to risk management.</p>
+<hr>
+<p>Let the random variable L denote the loss of a portfolio over the period h. Then given a confidence level <script type="math/tex">\alpha \in (0,1)</script>, we define the term <strong>Value-at-Risk</strong> to be:</p>
+<script type="math/tex; mode=display">\text{VaR}_\alpha =\inf\{ l \in \mathbb{R}: P(L>l) \leq 1 - \alpha \} = \inf\{ l \in \mathbb{R}: F_L(l) \geq \alpha \}</script><p>In words, the Value-at-Risk of a given portfolio is the threshold such that the probability of losing more than this threshold over a time horizon h is equal to 1 − α. It’s is hence a measure of <strong>risk exposure</strong>.</p>
+<p>For the sake of simplicity, we assume that the percentage change in the portfolio on each day t is a random variable <script type="math/tex">Y_t</script>, and that <u>the percentage change on each day is independent of the percentage change on all other days</u>. In other words, If <script type="math/tex">V_t</script> denotes the value of the portfolio on day t, then <script type="math/tex">V_t = Y_t × V_{t−1}</script> where <script type="math/tex">Y_t</script> is drawn from some distribution <script type="math/tex">F_Y (⋅)</script>. By the above assumption, the <script type="math/tex">Y_t</script> values are i.i.d.</p>
+<h2 id="Frequentist-Approach"><a href="#Frequentist-Approach" class="headerlink" title="Frequentist Approach"></a>Frequentist Approach</h2><p>The VaR will be estimated based on historical data. Suppose the company has held the portfolio for n + 1 days, they hence have n observations <script type="math/tex">\mathbf{y} = (y_1, . . . , y_n)</script>. Assuming we know the true distribution <script type="math/tex">F_Y (⋅)</script> of <script type="math/tex">Y_t</script>. Then we can compute the VaR as follows:</p>
+<ul>
+<li>Use <script type="math/tex">\mathbf{y}</script> to estimate parameters <script type="math/tex">\mathbf{\theta}</script> of <script type="math/tex">F_Y (⋅)</script></li>
+<li>Given a confidence level α, estimate q by solving <script type="math/tex">\int^q_{-\infty} p(y_t|\mathbf{\theta}) \ dy_t = 1 - \alpha</script><ul>
+<li><script type="math/tex">q = \Phi^{-1}(\alpha)\ \sigma-\mu \text{ if we have } F_Y \sim N(\mu, \sigma^2)</script>&nbsp;</li>
+</ul>
+</li>
+<li>q is the estimated VaR</li>
+</ul>
+<p>Having the estimated VaR, we can also multiply the percentage <script type="math/tex">\text{VaR}_{\alpha}</script> by the price at time t when it’s measured, to express VaR in value terms:</p>
+<script type="math/tex; mode=display">\text{VaR}^*_{\alpha,t} = \text{VaR}_{\alpha} \cdot V_t</script><h3 id="Returns"><a href="#Returns" class="headerlink" title="Returns"></a>Returns</h3><p>The <strong>simple return</strong>, <script type="math/tex">R_t</script>, in the asset between dates t - 1 and t, is definded as:</p>
+<script type="math/tex; mode=display">R_t \equiv \frac{V_t}{V_{t-1}}-1</script><p>The <strong>gross return</strong> between dates t - 1 and t, is definded as:</p>
+<script type="math/tex; mode=display">1 + R_t \equiv \frac{V_t}{V_{t-1}}</script><p>A altervative choice to the gross return is its natural logarithm, called the <strong>log-return</strong> <script type="math/tex">r_t</script>. The additive property make <script type="math/tex">r_t</script> easier to derive the time-series properties of asset returns over time:</p>
+<script type="math/tex; mode=display">r_t \equiv \log(1+R_t)=\log V_t - \log V_{t-1}</script><p>Note: When <script type="math/tex">R_t</script> is small, <script type="math/tex">r_t</script> is an good approximation of it: <script type="math/tex">r_t = \log(1+R_t) \approx R_t</script>.</p>
+<h3 id="Multiperiod-VaR"><a href="#Multiperiod-VaR" class="headerlink" title="Multiperiod VaR"></a>Multiperiod VaR</h3><p>So far we have measured VaR over 1 day. To estimate VaR over a longer risk horizon, there is a simple formula for scaling VaR from a 1-day horizon to an h-day horizon:</p>
+<script type="math/tex; mode=display">\text{VaR}_{\alpha,h} = \Phi^{-1}(\alpha)\ \sigma * \sqrt{h}-\mu * h</script><p>Note: The VaR measure can be easily extended to more than one asset, which we won’t discuss here.</p>
+<h3 id="Comments"><a href="#Comments" class="headerlink" title="Comments"></a>Comments</h3><ul>
+<li>VaR is easy to understand and interpret.</li>
+<li>However, VaR does not say anything about the size of losses once they exceed VaR.</li>
+<li>Furthermore, one of the main objections to using VaR is that it is not a coherent risk metric, i.e. it does not satisfy: <script type="math/tex">\text{VaR}_\alpha(X+Y) \leq \text{VaR}_\alpha(X) + \text{VaR}_\alpha(Y)</script> where X and Y are two financial assets. (An alternative is to use the <em>expected shortfall</em> )</li>
+</ul>
+<hr>
+<p>Several problems with this simple frequentist approach:</p>
+<ul>
+<li>It does not take uncertainty about <script type="math/tex">\mathbf{\theta}</script> into account as we used point estimates (MLE). But these estimates will not be accurate, so that we could potentially underestimate risk because we are not taking this uncertainty into account.</li>
+<li>It does not incorporate prior information about the future portfolio returns – using historical data is important, but we may also have beliefs about the future which aren’t reflected in previous history.</li>
+<li>The usual issues about the difficulty of communicating frequentist statements to non-statisticians, and how they get misinterpreted.</li>
+</ul>
+<p>We will hence explore a Bayesian approach to VaR analysis instead. In<br>this case we need to perform Bayesian inference for the parameters  <script type="math/tex">\mathbf{\theta}</script> of distribution <script type="math/tex">F_{Y_t}</script>.</p>
+<h2 id="Bayesian-Approach"><a href="#Bayesian-Approach" class="headerlink" title="Bayesian Approach"></a>Bayesian Approach</h2><p>Let’s take <script type="math/tex">F_{Y_t} \sim N(\mu, \sigma^2)</script>. We start with a prior distribution <script type="math/tex">p(\mu, \sigma^2)</script> on the unknown parameters of Gaussian distribution governing the percentage daily change <script type="math/tex">Y_t</script>, this is chosen to reflect our beliefs about the future portfolio returns. Remember: <script type="math/tex">\mu</script> is the average return on a given day <script type="math/tex">E[Y_t]</script>, and <script type="math/tex">\sigma^2</script> is the variance <script type="math/tex">Var[Y_t]</script>.</p>
+<p>Let’s start with the simplest case: suppose that the variance <script type="math/tex">\sigma^2</script> is <em>known</em>, so only <script type="math/tex">\mu</script> needs to be estimated.</p>
+<p>In this case, we have a conjugate prior <script type="math/tex">p(\mu) = N(\mu_0, \sigma^2_0)</script> which represent our prior beliefs about the average<br>change in the portfolio value.<br>The next step is to update this to get the posterior <script type="math/tex">p(\mu, \sigma^2|y_1, ..., y_n)</script> given the historial data, which captures all our knowledge about the distribution of <script type="math/tex">Y_t</script> based on both our prior knowledge, and the historical data:</p>
+<script type="math/tex; mode=display">p(\mu | \mathbf{y}, \sigma^2) \propto \exp\left (  \frac{1}{2\sigma^2_n} (\mu - \mu_n)^2 \right)</script><p>where <script type="math/tex">\sigma^2_n = \left ( \frac{n}{\sigma^2}+ \frac{1}{\sigma^2_0} \right )^{-1}</script> and <script type="math/tex">\mu_n = \sigma^2_n \left (  \frac{\mu_0}{\sigma^2_0} + \frac{\sum^n_iy_i}{\sigma^2}\right )</script>  </p>
+<font color=grey>(Please refer to Page 34-40, Lecture 4.pdf for detailed derivation)</font>
+
+<h3 id="Non-informative-Priors"><a href="#Non-informative-Priors" class="headerlink" title="Non-informative Priors"></a>Non-informative Priors</h3><p>In practice we may not have strong prior beliefs about <script type="math/tex">\mathbf{\theta}</script>, or we do not want our analysis to be influenced by our prior beliefs. Then we can choose a prior that has an extremely large uncertainty and doesn’t impose much prior information on the likelihood. E.g. Beta(1,1)</p>
+<p>Note: Non-informative Priors may be an improper prior, where the prior is no longer a valid probability distribution.</p>
+<h3 id="Posterior-predictive-distribution"><a href="#Posterior-predictive-distribution" class="headerlink" title="Posterior predictive distribution"></a>Posterior predictive distribution</h3><p>Let be Y a random variable with a known distribution <script type="math/tex">p(y|\mathbf{\theta})</script>, where <script type="math/tex">\mathbf{\theta}</script> is unknown. Before the data <script type="math/tex">\mathbf{y}</script> is observed, the marginal distribution of the unknown but observable y is as follows:</p>
+<script type="math/tex; mode=display">p(y) = \int p (y, \theta) \ d\theta = \int p(\theta)p(y|\theta) \ d\theta</script><p>Once the data <script type="math/tex">\mathbf{y}</script> have been observed, we can predict an<br>unknown <script type="math/tex">\widetilde{y}</script> from the same process:</p>
+<script type="math/tex; mode=display">\begin{align*}
+p(\widetilde{y}|\mathbf{y}) 
+& = \int p(\widetilde{y}, \theta| \mathbf{y}) \ d\theta  \\
+& = \int p(\widetilde{y}|\theta, \mathbf{y})p(\theta|\mathbf{y}) \ d\theta  \\
+& = \int p(\widetilde{y}|\theta)p(\theta|\mathbf{y}) \ d\theta
+\end{align*}</script><p>This is the fundamental equation of <em>Bayesian prediction</em>.</p>
+
+      
+    
+    </div>
+    
+    
+      
+
+      
+    
+  </article>
+  
+    
+  <nav class="article-page">
+    
+      <a href="/2020/11/21/daily-use/" id="art-left" class="art-left">
+        <span class="next-title">
+          <i class="iconfont icon-left"></i>Hexo Cheatsheet
+        </span>
+      </a>
+    
+    
+      <a href="/2020/02/20/stat0011-1/" id="art-right" class="art-right">
+        <span class="prev-title">
+          Decision and Risk - Part 1<i class="iconfont icon-right"></i>
+        </span>
+      </a>
+    
+  </nav>
+
+
+    
+  <i id="com-switch" class="iconfont icon-down jumping-in long infinite" style="font-size:24px;display:block;text-align:center;transform:rotate(180deg);"></i>
+  <div class="post-comments" id="post-comments" style="display: block;margin: auto 16px;">
+    
+
+    
+    
+
+    
+
+  </div>
+
+
+
+  
+  
+    
+  
+  <aside class="post-toc">
+    <div class="title"><span>Index</span></div>
+    <div class="toc-inner">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Frequentist-Approach"><span class="toc-text">Frequentist Approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Returns"><span class="toc-text">Returns</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Multiperiod-VaR"><span class="toc-text">Multiperiod VaR</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Comments"><span class="toc-text">Comments</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Bayesian-Approach"><span class="toc-text">Bayesian Approach</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Non-informative-Priors"><span class="toc-text">Non-informative Priors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Posterior-predictive-distribution"><span class="toc-text">Posterior predictive distribution</span></a></li></ol></li></ol>
+    </div>
+  </aside>
+
+
+
+  
+
+
+        </div>
+      </main>
+      <footer class="footer syuanpi fadeIn" id="footer">
+  <hr>
+  <div class="footer-wrapper">
+    <div class="left">
+      <div class="contact-icon">
+  
+  
+    <a href="https://github.com/oalvay" target="_blank" rel="noopener" class="iconfont icon-github" title="github"></a>
+  
+</div>
+
+    </div>
+    <div class="right">
+      <div class="copyright">
+    <div class="info">
+        <span>&copy;</span>
+        <span>2019 ~ 2023</span>
+        <span>❤</span>
+        <span>oalvay</span>
+    </div>
+    <div class="theme">
+        <span>
+            Powered by
+            <a href="http://hexo.io/" target="_blank" rel="noopener">Hexo </a>
+        </span>
+        <span>
+            Theme
+            <a href="https://github.com/ColMugX/hexo-theme-Nlvi" target="_blank" rel="noopener"> Nlvi </a>
+        </span>
+    </div>
+    
+</div>
+
+    </div>
+  </div>
+</footer>
+    </div>
+    <div class="tagcloud" id="tagcloud">
+  <div class="tagcloud-taglist">
+  
+    <div class="tagcloud-tag">
+      <button>Notes</button>
+    </div>
+  
+  </div>
+  
+    <div class="tagcloud-postlist active">
+      <h2>Notes</h2>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/02/ML-part1/">
+            <time class="tagcloud-posttime">2019 / 07 / 02</time>
+            <span>Coursera Machine Learning Week 1-3</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/16/ML-part3/">
+            <time class="tagcloud-posttime">2019 / 07 / 16</time>
+            <span>Coursera Machine Learning Week 6</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/08/ML-part2/">
+            <time class="tagcloud-posttime">2019 / 07 / 08</time>
+            <span>Coursera Machine Learning Week 4-5</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/18/ML-part4/">
+            <time class="tagcloud-posttime">2019 / 07 / 18</time>
+            <span>Coursera Machine Learning Week 7</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/21/ML-part5/">
+            <time class="tagcloud-posttime">2019 / 07 / 21</time>
+            <span>Coursera Machine Learning Week 8</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/07/25/ML-part6/">
+            <time class="tagcloud-posttime">2019 / 07 / 25</time>
+            <span>Coursera Machine Learning Week 9</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2019/08/04/ML-part7/">
+            <time class="tagcloud-posttime">2019 / 08 / 04</time>
+            <span>Coursera Machine Learning Week 10-11</span>
+          </a>
+        </div>
+      
+        <div class="tagcloud-post">
+          <a href="/2020/02/20/stat0011-1/">
+            <time class="tagcloud-posttime">2020 / 02 / 20</time>
+            <span>Decision and Risk - Part 1</span>
+          </a>
+        </div>
+      
+    </div>
+  
+</div>
+
+  </div>
+  <div class="backtop syuanpi melt toTop" id="backtop">
+    <i class="iconfont icon-up"></i>
+    <span style="text-align:center;font-family:Georgia;"><span style="font-family:Georgia;" id="scrollpercent">1</span>%</span>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+
+
+  <script></script>
+  <script src="/script/lib/lightbox/js/lightbox.min.js" async></script>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.7/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/x-mathjax-config;executed=true">MathJax.Hub.Config({tex2jax: {inlineMath: [["$","$"], ["\\(","\\)"]]}});</script>
+
+
+
+
+
+
+
+
+
+  
+<script src="/script/scheme/banderole.js"></script>
+
+
+
+
+<script src="/script/bootstarp.js"></script>
+
+
+
+<script>
+if (nlviconfig.theme.toc) {
+  setTimeout(function() {
+    if (nlviconfig.theme.scheme === 'balance') {
+      $("#header").addClass("show_toc");
+    } else if (nlviconfig.theme.scheme === 'banderole') {
+      $(".container-inner").addClass("has_toc");
+      $(".post-toc .title").addClass("show");
+      $(".toc-inner").addClass("show");
+    }
+  }, 1000);
+}
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+</body>
+</html>

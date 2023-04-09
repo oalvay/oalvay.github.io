@@ -4,5 +4,6 @@ document.addEventListener('DOMContentLoaded', function() {
   app.bootstarp();
 });
 $(document).ready(function() {
-  $('.container').show();
+  $('.container-inner').show();
+  $('.logo-inner').show();
 });
